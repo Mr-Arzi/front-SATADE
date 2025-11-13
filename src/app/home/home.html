@@ -1,1 +1,182 @@
-<p>home works!</p>
+<div class="home-layout">
+
+  <!-- Barra superior -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <img
+        class="logo-mini"
+        src="satadelogoblanco.jpg"
+        alt="Logo SATADE"
+      />
+      <span class="topbar-title">SATADE</span>
+    </div>
+
+    <div class="topbar-right">
+      <div class="user-avatar">
+        <span>👤</span>
+      </div>
+      <div class="user-info">
+        <div class="user-name">Jesús Galván</div>
+        <div class="user-role">Administrador</div>
+      </div>
+      <div class="user-arrow">➤</div>
+    </div>
+  </header>
+
+  <!-- Contenido general -->
+  <div class="home-content">
+
+      <!-- Menú lateral desplegable -->
+<button class="menu-toggle" (click)="toggleMenu()">
+  <span class="menu-icon">☰</span>
+</button>
+
+<aside class="sidebar" [class.collapsed]="!isMenuOpen">
+
+  <div class="sidebar-inner">
+
+    <button class="menu-item active">
+      <span class="menu-icon-square">▦</span>
+      <span>Inicio</span>
+    </button>
+
+    <button class="menu-item">
+      <span class="menu-icon-circle">?</span>
+      <span>Acerca de...</span>
+    </button>
+
+    <button class="menu-item">
+      <span class="menu-icon-circle">👥</span>
+      <span>Estudiantes</span>
+    </button>
+
+    <button class="menu-item">
+      <span class="menu-icon-circle">!</span>
+      <span>Alertas<br>Tempranas</span>
+    </button>
+
+    <button class="menu-item">
+      <span class="menu-icon-circle">📈</span>
+      <span>Seguimiento</span>
+    </button>
+
+    <button class="menu-item">
+      <span class="menu-icon-circle">📄</span>
+      <span>Reportes</span>
+    </button>
+
+  </div>
+</aside>
+
+
+    <!-- Panel principal -->
+    <main class="dashboard">
+
+      <!-- Fila superior -->
+      <section class="row row-top">
+        <!-- Gráfico de riesgo -->
+        <div class="card card-chart">
+          <div class="card-header">
+            <div class="card-title-blue">Gráfico de riesgo</div>
+            <div class="card-subtitle">Estudiantes en riesgo</div>
+          </div>
+
+          <div class="chart-placeholder">
+            <!-- Aquí luego podrías montar un gráfico real (Chart.js, etc.) -->
+            <div class="chart-grid">
+              <!-- líneas horizontales simuladas -->
+              <div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <div class="chart-footer">
+              <span>S1</span>
+              <span>S2</span>
+              <span>S3</span>
+              <span>S4</span>
+              <span>S5</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tendencias y Mensaje -->
+        <div class="card-column-right">
+          <div class="card card-pill">
+            <div class="card-pill-title">Tendencias</div>
+            <p class="card-pill-text">
+              Línea temporal: <span class="text-green">deserción disminuyó 8% este semestre</span>
+            </p>
+          </div>
+
+          <div class="card card-pill">
+            <div class="card-pill-title">Mensaje</div>
+            <p class="card-pill-text">
+              Última actualización:
+              <span class="text-orange">hace 2 horas</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fila inferior -->
+      <section class="row row-bottom">
+        <!-- Carreras con mayor riesgo -->
+        <div class="card card-table">
+          <div class="card-header">
+            <div class="card-title-blue">Carreras con mayor riesgo</div>
+            <div class="card-subtitle">En el último mes</div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Carrera</th>
+                <th>Riesgo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ingeniería eléctrica</td>
+                <td class="danger-dot">!</td>
+              </tr>
+              <tr>
+                <td>Ingeniería de software</td>
+                <td class="danger-dot">!</td>
+              </tr>
+              <tr>
+                <td>Ingeniería Química</td>
+                <td class="danger-dot">!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Alertas recientes -->
+        <div class="card card-alerts">
+          <div class="card-header">
+            <div class="card-title-blue">Alertas recientes</div>
+          </div>
+
+          <ul class="alerts-list">
+            <li>
+              <span class="alert-icon">🔔</span>
+              <span class="alert-name">Alicia Vargas</span>
+              <span class="alert-arrow">→</span>
+              <span class="alert-text">
+                Riesgo alto por baja asistencia
+              </span>
+            </li>
+
+            <li>
+              <span class="alert-icon">🔔</span>
+              <span class="alert-name">Pedro Juarez</span>
+              <span class="alert-arrow">→</span>
+              <span class="alert-text">
+                Riesgo alto por materias reprobadas
+              </span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>

@@ -7,6 +7,6 @@ export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'loggin', component: Loggin },
 
-    // 3. Una regla "comodín" para redirigir
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
+    //para redirigir
+    { path: '', redirectTo: '/loggin', pathMatch: 'full' }
 ];

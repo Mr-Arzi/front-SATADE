@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './home.css',
 })
 export class Home {
+  isMenuOpen = true;
+
+  toggleMenu(){
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
 }
