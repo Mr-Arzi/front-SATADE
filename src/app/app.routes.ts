@@ -2,10 +2,12 @@ import { Routes } from '@angular/router';
 
 import { Home } from './home/home';
 import { Loggin } from './loggin/loggin';
+import { RegistrarEstudianteComponent } from './registrarestudiante/registrarestudiante.component';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'loggin', component: Loggin },
+    {path: 'registrar', component: RegistrarEstudianteComponent},
 
     //para redirigir
     { path: '', redirectTo: '/loggin', pathMatch: 'full' }
