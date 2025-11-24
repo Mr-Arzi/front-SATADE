@@ -2,13 +2,23 @@ import { Routes } from '@angular/router';
 
 import { Home } from './home/home';
 import { Loggin } from './loggin/loggin';
-import { RegistrarEstudianteComponent } from './registrarestudiante/registrarestudiante.component';
+import { Registrarestudiante } from './registrarestudiante/registrarestudiante';
+import { Student } from './student/student';
+import { StudentProfile } from './student-profile/student-profile';
+import { Alerts} from './alerts/alerts';
+import { RegistroIntervenciones } from './registro-intervenciones/registro-intervenciones';
+import { Reportes } from './reportes/reportes';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
-    { path: 'loggin', component: Loggin },
-    {path: 'registrar', component: RegistrarEstudianteComponent},
+    { path: 'login', component: Loggin },
+    { path: 'registrar', component: Registrarestudiante},
+    { path: 'estudiantes', component: Student },
+    { path: 'perfil-estudiante', component: StudentProfile},
+    { path: 'alertas', component: Alerts},
+    { path: 'registro-intervenciones',component: RegistroIntervenciones},
+    { path: 'reportes', component:Reportes },
 
     //para redirigir
-    { path: '', redirectTo: '/loggin', pathMatch: 'full' }
+    { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];

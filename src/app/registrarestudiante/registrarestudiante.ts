@@ -3,12 +3,12 @@ import { RouterLink } from "@angular/router";
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-registrarestudiante',
   imports: [RouterLink, NgIf],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  templateUrl: './registrarestudiante.html',
+  styleUrl: './registrarestudiante.css',
 })
-export class Home {
+export class Registrarestudiante {
   isMenuOpen = true;
 
   showAbout = false;
@@ -24,5 +24,4 @@ export class Home {
   closeAbout() {
     this.showAbout = false;
   }
-
 }

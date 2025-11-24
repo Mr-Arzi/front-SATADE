@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
 import { NgIf } from '@angular/common';
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-student-profile',
   imports: [RouterLink, NgIf],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  templateUrl: './student-profile.html',
+  styleUrl: './student-profile.css',
 })
-export class Home {
-  isMenuOpen = true;
+export class StudentProfile {
+      isMenuOpen = true;
 
   showAbout = false;
 

@@ -1,0 +1,193 @@
+<div class="home-layout">
+
+  <!-- Barra superior -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <img
+        class="logo-mini"
+        src="satadelogoblanco.jpg"
+        alt="Logo SATADE"
+      />
+      <span class="topbar-title">SATADE</span>
+    </div>
+
+    <div class="topbar-right">
+      <div class="user-avatar">
+        <span>👤</span>
+      </div>
+      <div class="user-info">
+        <div class="user-name">Jesús Galván</div>
+        <div class="user-role">Administrador</div>
+      </div>
+      <div class="user-arrow">➤</div>
+    </div>
+  </header>
+
+  <!-- Contenido general -->
+  <div class="home-content">
+
+      <!-- Menú lateral desplegable -->
+<button class="menu-toggle" (click)="toggleMenu()">
+  <span class="menu-icon">☰</span>
+</button>
+
+<aside class="sidebar" [class.collapsed]="!isMenuOpen">
+
+  <div class="sidebar-inner">
+
+    <button class="menu-item active" routerLink="/home">
+      <span class="menu-icon-square">▦</span>
+      <span>Inicio</span>
+    </button>
+
+    <button class="menu-item" (click)="openAbout()">
+      <span class="menu-icon-circle">?</span>
+      <span>Acerca de...</span>
+    </button>
+
+    <button class="menu-item" routerLink="/estudiantes" >
+      <span class="menu-icon-circle">👥</span>
+      <span>Estudiantes</span>
+    </button>
+
+
+    <button class="menu-item" routerLink="/alertas">
+      <span class="menu-icon-circle">!</span>
+      <span>Alertas<br>Tempranas</span>
+    </button>
+
+    <button class="menu-item" routerLink="/registro-intervenciones">
+      <span class="menu-icon-circle">📈</span>
+      <span>Seguimiento</span>
+    </button>
+
+    <button class="menu-item"  routerLink="/reportes">
+      <span class="menu-icon-circle">📄</span>
+      <span>Reportes</span>
+    </button>
+
+  </div>
+</aside>
+
+
+    <!-- Panel principal -->
+    <main class="dashboard">
+       <div class="student-register-page">
+  <h1 class="sr-title">Registro de Estudiante</h1>
+
+  <section class="sr-card">
+    <!-- Fila buscador -->
+    <div class="sr-top-row">
+      <div class="sr-search-box">
+        <input
+          type="text"
+          class="sr-search-input"
+          placeholder="Buscar por nombre"
+        />
+        <span class="sr-search-icon">🔍</span>
+        <button class="sr-refresh-btn" type="button">⟳</button>
+      </div>
+    </div>
+
+    <hr class="sr-divider" />
+
+    <!-- Cuerpo principal -->
+    <div class="sr-body">
+      <!-- Avatar -->
+      <div class="sr-avatar-area">
+        <div class="sr-avatar-circle">
+          <!-- Puedes reemplazar por una imagen -->
+          <span class="sr-avatar-icon">👤+</span>
+        </div>
+      </div>
+
+      <!-- Formulario -->
+      <div class="sr-form-area">
+        <div class="sr-form-row">
+          <label>Nombre del alumno:</label>
+          <input type="text" class="sr-input long" />
+        </div>
+
+        <div class="sr-form-row">
+          <label>Semestre:</label>
+          <input type="number" class="sr-input short" min="1" max="12" />
+        </div>
+
+        <div class="sr-form-row">
+          <label>Matrícula:</label>
+          <input type="text" class="sr-input medium" />
+        </div>
+
+        <div class="sr-form-row">
+          <label>Carrera:</label>
+          <select class="sr-input medium">
+            <option value="">Seleccionar</option>
+            <option>Medicina</option>
+            <option>Ingeniería de software</option>
+            <option>Ingeniería eléctrica</option>
+            <option>Ingeniería química</option>
+          </select>
+        </div>
+
+        <div class="sr-form-row">
+          <label>Tutor:</label>
+          <select class="sr-input medium">
+            <option value="">Seleccionar</option>
+            <option>Dylan Tellez</option>
+            <option>Ana Pérez</option>
+            <option>Rogelio Luna</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="sr-actions">
+      <button class="sr-btn sr-btn-save" type="button">
+        ⬇ Guardar
+      </button>
+      <button class="sr-btn sr-btn-cancel" type="button">
+        ✖ Cancelar
+      </button>
+    </div>
+  </section>
+</div>
+
+
+
+    </main>
+  </div>
+   <!-- === Pop-up Acerca de SA-TA-DE === -->
+<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+  <div class="about-modal" (click)="$event.stopPropagation()">
+
+    <button class="about-close" (click)="closeAbout()">✖</button>
+
+    <div class="about-image">
+      <img src="desercion.jpeg" alt="Acerca de SATADE">
+    </div>
+
+    <div class="about-text">
+      <p>
+        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+        Deserción Escolar que utiliza el análisis de datos y modelos de
+        Inteligencia Artificial para identificar estudiantes con riesgo de
+        abandonar sus estudios.
+      </p>
+      <p>
+        La plataforma analiza información académica, socioeconómica y de
+        asistencia para generar alertas preventivas, permitiendo que tutores,
+        orientadores y coordinadores educativos intervengan a tiempo mediante
+        apoyo académico, psicológico o económico.
+      </p>
+      <p>
+        El objetivo principal es reducir la deserción escolar, mejorar la
+        continuidad educativa y fortalecer el bienestar estudiantil dentro de
+        las instituciones de nivel superior.
+      </p>
+    </div>
+
+  </div>
+</div>
+</div>
+

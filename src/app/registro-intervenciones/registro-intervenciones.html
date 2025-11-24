@@ -1,0 +1,161 @@
+<div class="home-layout">
+
+  <!-- Barra superior -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <img
+        class="logo-mini"
+        src="satadelogoblanco.jpg"
+        alt="Logo SATADE"
+      />
+      <span class="topbar-title">SATADE</span>
+    </div>
+
+    <div class="topbar-right">
+      <div class="user-avatar">
+        <span>👤</span>
+      </div>
+      <div class="user-info">
+        <div class="user-name">Jesús Galván</div>
+        <div class="user-role">Administrador</div>
+      </div>
+      <div class="user-arrow">➤</div>
+    </div>
+  </header>
+
+  <!-- Contenido general -->
+  <div class="home-content">
+
+      <!-- Menú lateral desplegable -->
+<button class="menu-toggle" (click)="toggleMenu()">
+  <span class="menu-icon">☰</span>
+</button>
+
+<aside class="sidebar" [class.collapsed]="!isMenuOpen">
+
+  <div class="sidebar-inner">
+
+    <button class="menu-item active" routerLink="/home">
+      <span class="menu-icon-square">▦</span>
+      <span>Inicio</span>
+    </button>
+
+    <button class="menu-item" (click)="openAbout()">
+      <span class="menu-icon-circle">?</span>
+      <span>Acerca de...</span>
+    </button>
+
+    <button class="menu-item" routerLink="/estudiantes" >
+      <span class="menu-icon-circle">👥</span>
+      <span>Estudiantes</span>
+    </button>
+
+
+    <button class="menu-item" routerLink="/alertas">
+      <span class="menu-icon-circle">!</span>
+      <span>Alertas<br>Tempranas</span>
+    </button>
+
+    <button class="menu-item" routerLink="/registro-intervenciones">
+      <span class="menu-icon-circle">📈</span>
+      <span>Seguimiento</span>
+    </button>
+
+    <button class="menu-item"  routerLink="/reportes">
+      <span class="menu-icon-circle">📄</span>
+      <span>Reportes</span>
+    </button>
+
+  </div>
+</aside>
+
+
+    <!-- Panel principal -->
+    <main class="dashboard">
+        <div class="registro-page">
+
+  <h1 class="page-title">Registro de intervenciones</h1>
+
+  <section class="registro-card">
+
+    <!-- Fila Superior -->
+    <div class="registro-top">
+
+      <div class="search-box">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Buscar por nombre"
+        />
+        <span class="search-icon">🔍</span>
+        <button class="refresh-btn">⟳</button>
+      </div>
+
+      <div class="student-info">
+        <span class="label">Estudiante:</span>
+        <span class="value">María Elena Fernandez Cortés</span>
+      </div>
+
+    </div>
+
+    <!-- Tabla -->
+    <div class="registro-table-wrapper">
+      <table class="registro-table">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Intervención realizada</th>
+            <th>Responsable</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>14/03/2026</td>
+            <td>Tutoría académica</td>
+            <td>Dylan Tellez</td>
+            <td>“Hablamos sobre organización y calendario. Se vio receptiva.”</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+</div>
+
+    </main>
+  </div>
+   <!-- === Pop-up Acerca de SA-TA-DE === -->
+<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+  <div class="about-modal" (click)="$event.stopPropagation()">
+
+    <button class="about-close" (click)="closeAbout()">✖</button>
+
+    <div class="about-image">
+      <img src="desercion.jpeg" alt="Acerca de SATADE">
+    </div>
+
+    <div class="about-text">
+      <p>
+        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+        Deserción Escolar que utiliza el análisis de datos y modelos de
+        Inteligencia Artificial para identificar estudiantes con riesgo de
+        abandonar sus estudios.
+      </p>
+      <p>
+        La plataforma analiza información académica, socioeconómica y de
+        asistencia para generar alertas preventivas, permitiendo que tutores,
+        orientadores y coordinadores educativos intervengan a tiempo mediante
+        apoyo académico, psicológico o económico.
+      </p>
+      <p>
+        El objetivo principal es reducir la deserción escolar, mejorar la
+        continuidad educativa y fortalecer el bienestar estudiantil dentro de
+        las instituciones de nivel superior.
+      </p>
+    </div>
+
+  </div>
+</div>
+</div>
+

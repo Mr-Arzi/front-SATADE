@@ -1,9 +1,3 @@
-:host {
-  display: block;
-  min-height: 100vh;
-  font-family: 'Roboto', sans-serif;
-}
-
 /* ========== Layout general ========== */
 
 .home-layout {
@@ -172,243 +166,118 @@
   font-size: 16px;
 }
 
-/* ========== Dashboard main ========== */
 
-.dashboard {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+
+:host {
+  display: block;
+  width: 100%;
 }
 
-.row {
-  display: flex;
-  gap: 18px;
+/* Layout principal */
+.registro-page {
+  padding: 24px 32px 32px;
+  font-family: "Roboto", sans-serif;
 }
 
-.row-top {
-  flex: 1.2;
-}
-
-.row-bottom {
-  flex: 1;
-}
-
-/* ========== Cards genéricas ========== */
-
-.card {
-  background: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #b0b0b0;
-  padding: 10px 14px 12px;
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Cabeceras de cards */
-
-.card-header {
-  margin-bottom: 8px;
-}
-
-.card-title-blue {
-  font-family: 'Montserrat', sans-serif;
+/* Título */
+.page-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
   font-weight: 600;
-  color: #1a3c88;
-  font-size: 14px;
+  margin-bottom: 18px;
+  color: #222;
 }
 
-.card-subtitle {
-  font-size: 12px;
-  color: #444;
+/* Card principal */
+.registro-card {
+  background: #ffffff;
+  border: 1px solid #bcd7bd; /* tono verde suave */
+  border-radius: 4px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  padding: 20px 24px;
 }
 
-/* ========== Card gráfico principal ========== */
-
-.card-chart {
-  flex: 2;
+/* Top */
+.registro-top {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
-.chart-placeholder {
-  border: 1px solid #b0b0b0;
-  margin-top: 6px;
-  height: 260px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+/******** Buscador *********/
+.search-box {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
 }
 
-.chart-grid {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.chart-grid div {
-  flex: 1;
-  border-top: 1px solid #dedede;
-}
-
-.chart-footer {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-}
-
-/* ========== Columna derecha (Tendencias / Mensaje) ========== */
-
-.card-column-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.card-pill {
-  border-radius: 14px;
-}
-
-.card-pill-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  color: #1a3c88;
+.search-input {
+  width: 240px;
+  padding: 8px 32px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #cccccc;
+  background: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
   font-size: 13px;
-  margin-bottom: 4px;
-}
-
-.card-pill-text {
-  margin: 0;
-  font-size: 12px;
-}
-
-.text-green {
-  color: #2e7d32;
-}
-
-.text-orange {
-  color: #ff8f00;
-}
-
-/* ========== Card tabla ========== */
-
-.card-table {
-  flex: 1;
-}
-
-.card-table table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  margin-top: 6px;
-}
-
-.card-table th,
-.card-table td {
-  padding: 4px 6px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.card-table th {
-  text-align: left;
-  color: #1a3c88;
-}
-
-.danger-dot {
-  color: #ff1744;
-  text-align: center;
-}
-
-/* ========== Card alertas ========== */
-
-.card-alerts {
-  flex: 1;
-}
-
-.alerts-list {
-  list-style: none;
-  padding: 0;
-  margin: 4px 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 12px;
-}
-
-.alerts-list li {
-  display: grid;
-  grid-template-columns: auto auto 12px 1fr;
-  align-items: center;
-  column-gap: 6px;
-}
-
-.alert-icon {
-  font-size: 16px;
-}
-
-.alert-name {
   font-weight: 500;
 }
 
-.alert-arrow {
-  text-align: center;
+.search-input::placeholder {
+  color: #bbb;
 }
 
-.alert-text {
-  color: #ff1744;
+.search-icon {
+  margin-left: -28px;
 }
 
-/* ========== Responsivo básico ========== */
-
-@media (max-width: 960px) {
-  .home-content {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    flex-direction: row;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .sidebar.collapsed {
-    transform: translateX(0);
-  }
-
-  .sidebar-inner {
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .dashboard {
-    padding-top: 8px;
-  }
-
-  .row {
-    flex-direction: column;
-  }
+.refresh-btn {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
 }
 
-.sidebar {
-  position: relative;
-  width: 240px;
-  transition: transform 0.25s ease-in-out;
-
+/******** Info del estudiante *********/
+.student-info {
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
 }
 
-.sidebar.collapsed {
-  transform: translateX(-260px);
+.student-info .label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
 
-.menu-item.active {
-  background: #2e7d32 !important;
-  transform: translateY(-1px);
+.student-info .value {
+  font-weight: 500;
 }
+
+/******** Tabla *********/
+.registro-table-wrapper {
+  overflow-x: auto;
+}
+
+.registro-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.registro-table th {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.registro-table td {
+  padding: 7px 8px;
+  vertical-align: top;
+}
+
 
 /*pop up*/
 

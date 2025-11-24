@@ -27,40 +27,41 @@
   <div class="home-content">
 
       <!-- Menú lateral desplegable -->
-<button class="menu-toggle" (click)="toggleMenu()">
-  <span class="menu-icon">☰</span>
-</button>
+  <button class="menu-toggle" (click)="toggleMenu()">
+    <span class="menu-icon">☰</span>
+  </button>
 
-<aside class="sidebar" [class.collapsed]="!isMenuOpen">
+  <aside class="sidebar" [class.collapsed]="!isMenuOpen">
 
   <div class="sidebar-inner">
 
-    <button class="menu-item active">
+    <button class="menu-item active" routerLink="/home">
       <span class="menu-icon-square">▦</span>
       <span>Inicio</span>
     </button>
 
-    <button class="menu-item">
+    <button class="menu-item" (click)="openAbout()">
       <span class="menu-icon-circle">?</span>
       <span>Acerca de...</span>
     </button>
 
-    <button class="menu-item">
+    <button class="menu-item" routerLink="/estudiantes" >
       <span class="menu-icon-circle">👥</span>
       <span>Estudiantes</span>
     </button>
 
-    <button class="menu-item">
+
+    <button class="menu-item" routerLink="/alertas">
       <span class="menu-icon-circle">!</span>
       <span>Alertas<br>Tempranas</span>
     </button>
 
-    <button class="menu-item">
+    <button class="menu-item" routerLink="/registro-intervenciones">
       <span class="menu-icon-circle">📈</span>
       <span>Seguimiento</span>
     </button>
 
-    <button class="menu-item">
+    <button class="menu-item"  routerLink="/reportes">
       <span class="menu-icon-circle">📄</span>
       <span>Reportes</span>
     </button>
@@ -179,4 +180,37 @@
 
     </main>
   </div>
+  <!-- === Pop-up Acerca de SA-TA-DE === -->
+<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+  <div class="about-modal" (click)="$event.stopPropagation()">
+
+    <button class="about-close" (click)="closeAbout()">✖</button>
+
+    <div class="about-image">
+      <img src="desercion.jpeg" alt="Acerca de SATADE">
+    </div>
+
+    <div class="about-text">
+      <p>
+        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+        Deserción Escolar que utiliza el análisis de datos y modelos de
+        Inteligencia Artificial para identificar estudiantes con riesgo de
+        abandonar sus estudios.
+      </p>
+      <p>
+        La plataforma analiza información académica, socioeconómica y de
+        asistencia para generar alertas preventivas, permitiendo que tutores,
+        orientadores y coordinadores educativos intervengan a tiempo mediante
+        apoyo académico, psicológico o económico.
+      </p>
+      <p>
+        El objetivo principal es reducir la deserción escolar, mejorar la
+        continuidad educativa y fortalecer el bienestar estudiantil dentro de
+        las instituciones de nivel superior.
+      </p>
+    </div>
+
+  </div>
+</div>
+
 </div>
