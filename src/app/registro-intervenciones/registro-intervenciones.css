@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
 /* ========== Layout general ========== */
 
 .home-layout {
@@ -75,13 +81,27 @@
   font-size: 18px;
 }
 
-/* ========== Contenido ========== */
+/* ========== Contenido (sidebar + panel) ========== */
 
 .home-content {
   flex: 1;
   display: flex;
-  padding: 16px 16px 24px;
-  gap: 16px;
+  padding: 24px 32px 32px;
+  gap: 24px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Panel principal a la derecha del menú */
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ========== Sidebar ========== */
@@ -161,27 +181,30 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+.menu-item.active {
+  background: #2e7d32;
+}
+
 .menu-icon-square,
 .menu-icon-circle {
   font-size: 16px;
 }
 
+/* ========== Página Registro de intervenciones ========== */
 
-
-:host {
-  display: block;
-  width: 100%;
-}
-
-/* Layout principal */
 .registro-page {
-  padding: 24px 32px 32px;
-  font-family: "Roboto", sans-serif;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0; /* el padding ya lo da .home-content */
 }
 
 /* Título */
 .page-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 18px;
@@ -195,6 +218,9 @@
   border-radius: 4px;
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
   padding: 20px 24px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Top */
@@ -218,7 +244,7 @@
   border-radius: 999px;
   border: 1px solid #cccccc;
   background: #f5f5f5;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   font-weight: 500;
 }
@@ -246,7 +272,7 @@
 }
 
 .student-info .label {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
 
@@ -266,7 +292,7 @@
 }
 
 .registro-table th {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   padding: 6px 8px;
   text-align: left;
@@ -277,9 +303,6 @@
   padding: 7px 8px;
   vertical-align: top;
 }
-
-
-/*pop up*/
 
 /* === Popup Acerca de SA-TA-DE === */
 
@@ -328,4 +351,35 @@
   margin: 4px 0;
   font-size: 13px;
   text-align: justify;
+}
+
+/* ========== Responsivo básico ========== */
+
+@media (max-width: 960px) {
+  .home-content {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sidebar-inner {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .registro-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search-input {
+    width: 100%;
+  }
 }

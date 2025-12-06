@@ -3,11 +3,7 @@
   <!-- Barra superior -->
   <header class="topbar">
     <div class="topbar-left">
-      <img
-        class="logo-mini"
-        src="satadelogoblanco.jpg"
-        alt="Logo SATADE"
-      />
+      <img class="logo-mini" src="satadelogoblanco.png" alt="Logo SATADE" />
       <span class="topbar-title">SATADE</span>
     </div>
 
@@ -26,196 +22,188 @@
   <!-- Contenido general -->
   <div class="home-content">
 
-      <!-- Menú lateral desplegable -->
-<button class="menu-toggle" (click)="toggleMenu()">
-  <span class="menu-icon">☰</span>
-</button>
-
-<aside class="sidebar" [class.collapsed]="!isMenuOpen">
-
-  <div class="sidebar-inner">
-
-    <button class="menu-item active" routerLink="/home">
-      <span class="menu-icon-square">▦</span>
-      <span>Inicio</span>
+    <!-- Menú lateral desplegable -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span class="menu-icon">☰</span>
     </button>
 
-    <button class="menu-item" (click)="openAbout()">
-      <span class="menu-icon-circle">?</span>
-      <span>Acerca de...</span>
-    </button>
+    <aside class="sidebar" [class.collapsed]="!isMenuOpen">
 
-    <button class="menu-item" routerLink="/estudiantes" >
-      <span class="menu-icon-circle">👥</span>
-      <span>Estudiantes</span>
-    </button>
+      <div class="sidebar-inner">
 
+        <button class="menu-item" routerLink="/home">
+          <span class="menu-icon-square">▦</span>
+          <span>Inicio</span>
+        </button>
 
-    <button class="menu-item" routerLink="/alertas">
-      <span class="menu-icon-circle">!</span>
-      <span>Alertas<br>Tempranas</span>
-    </button>
+        <button class="menu-item" (click)="openAbout()">
+          <span class="menu-icon-circle">?</span>
+          <span>Acerca de...</span>
+        </button>
 
-    <button class="menu-item" routerLink="/registro-intervenciones">
-      <span class="menu-icon-circle">📈</span>
-      <span>Seguimiento</span>
-    </button>
+        <button class="menu-item active" routerLink="/estudiantes">
+          <span class="menu-icon-circle">👥</span>
+          <span>Estudiantes</span>
+        </button>
 
-    <button class="menu-item"  routerLink="/reportes">
-      <span class="menu-icon-circle">📄</span>
-      <span>Reportes</span>
-    </button>
+        <button class="menu-item" routerLink="/alertas">
+          <span class="menu-icon-circle">!</span>
+          <span>Alertas<br>Tempranas</span>
+        </button>
 
-  </div>
-</aside>
+        <button class="menu-item" routerLink="/registro-intervenciones">
+          <span class="menu-icon-circle">📈</span>
+          <span>Seguimiento</span>
+        </button>
 
+        <button class="menu-item" routerLink="/reportes">
+          <span class="menu-icon-circle">📄</span>
+          <span>Reportes</span>
+        </button>
+
+      </div>
+    </aside>
 
     <!-- Panel principal -->
     <main class="dashboard">
-        <div class="students-page">
-  <h1 class="page-title">Estudiantes Registrados</h1>
+      <div class="students-page">
+        <h1 class="page-title">Estudiantes Registrados</h1>
 
-  <section class="students-card">
-    <!-- Header: búsqueda + botón agregar -->
-    <div class="students-card-top">
-      <div class="search-box">
-        <input
-          type="text"
-          class="search-input"
-          placeholder="Buscar por nombre"
-        />
-        <span class="search-icon">🔍</span>
-        <button class="refresh-btn" type="button">⟳</button>
+        <section class="students-card">
+          <!-- Header: búsqueda + botón agregar -->
+          <div class="students-card-top">
+            <div class="search-box">
+              <input type="text" class="search-input" placeholder="Buscar por nombre" />
+              <span class="search-icon">🔍</span>
+              <button class="refresh-btn" type="button">⟳</button>
+            </div>
+
+            <button class="btn-add-student" type="button" routerLink="/registrar">
+              <span class="add-icon">＋</span>
+              <span>Agregar Estudiante</span>
+            </button>
+          </div>
+
+          <!-- Leyenda de nivel de riesgo -->
+          <div class="risk-legend">
+            <span class="risk-label">Nivel:</span>
+
+            <span class="risk-item">
+              <span class="risk-dot low"></span> Bajo
+            </span>
+
+            <span class="risk-item">
+              <span class="risk-dot medium"></span> Medio
+            </span>
+
+            <span class="risk-item">
+              <span class="risk-dot high"></span> Alto
+            </span>
+          </div>
+
+          <!-- Tabla de estudiantes -->
+          <div class="students-table-wrapper">
+            <table class="students-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Carrera</th>
+                  <th>Grupo</th>
+                  <th>Promedio</th>
+                  <th>Asistencia</th>
+                  <th>Riesgo</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>Luis Rivera Martínez</td>
+                  <td>Ingeniería eléctrica</td>
+                  <td>101</td>
+                  <td>8.9</td>
+                  <td>92%</td>
+                  <td><span class="risk-dot low"></span></td>
+                  <td class="actions-cell">
+                    <button class="icon-btn">☰</button>
+                    <button class="icon-btn">✏️</button>
+                    <button class="icon-btn">🗑️</button>
+                    <button class="icon-btn" routerLink="/perfil-estudiante">👁</button>
+                  </td>
+                </tr>
+
+                <tr class="row-selected">
+                  <td>Tamara Torres Trujillo</td>
+                  <td>Medicina</td>
+                  <td>301</td>
+                  <td>7.2</td>
+                  <td>68%</td>
+                  <td><span class="risk-dot medium"></span></td>
+                  <td class="actions-cell">
+                    <button class="icon-btn">☰</button>
+                    <button class="icon-btn">✏️</button>
+                    <button class="icon-btn">🗑️</button>
+                    <button class="icon-btn" routerLink="/perfil-estudiante">👁</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>Juan Pérez Domínguez</td>
+                  <td>Ingeniería de software</td>
+                  <td>102</td>
+                  <td>6</td>
+                  <td>45%</td>
+                  <td><span class="risk-dot high"></span></td>
+                  <td class="actions-cell">
+                    <button class="icon-btn">☰</button>
+                    <button class="icon-btn">✏️</button>
+                    <button class="icon-btn">🗑️</button>
+                    <button class="icon-btn" routerLink="/perfil-estudiante">👁</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Footer de la tabla -->
+          <div class="table-footer">
+            Mostrando 1 - 12 de 12 resultados
+          </div>
+        </section>
       </div>
-
-      <button class="btn-add-student" type="button" routerLink="/registrar">
-        <span class="add-icon">＋</span>
-        <span>Agregar Estudiante</span>
-      </button>
-    </div>
-
-    <!-- Leyenda de nivel de riesgo -->
-    <div class="risk-legend">
-      <span class="risk-label">Nivel:</span>
-
-      <span class="risk-item">
-        <span class="risk-dot low"></span> Bajo
-      </span>
-
-      <span class="risk-item">
-        <span class="risk-dot medium"></span> Medio
-      </span>
-
-      <span class="risk-item">
-        <span class="risk-dot high"></span> Alto
-      </span>
-    </div>
-
-    <!-- Tabla de estudiantes -->
-    <div class="students-table-wrapper">
-      <table class="students-table">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Carrera</th>
-            <th>Grupo</th>
-            <th>Promedio</th>
-            <th>Asistencia</th>
-            <th>Riesgo</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>Luis Rivera Martínez</td>
-            <td>Ingeniería eléctrica</td>
-            <td>101</td>
-            <td>8.9</td>
-            <td>92%</td>
-            <td><span class="risk-dot low"></span></td>
-            <td class="actions-cell">
-              <button class="icon-btn">☰</button>
-              <button class="icon-btn">✏️</button>
-              <button class="icon-btn">🗑️</button>
-              <button class="icon-btn" routerLink="/perfil-estudiante">👁</button>
-            </td>
-          </tr>
-
-          <tr class="row-selected">
-            <td>Tamara Torres Trujillo</td>
-            <td>Medicina</td>
-            <td>301</td>
-            <td>7.2</td>
-            <td>68%</td>
-            <td><span class="risk-dot medium"></span></td>
-            <td class="actions-cell">
-              <button class="icon-btn">☰</button>
-              <button class="icon-btn">✏️</button>
-              <button class="icon-btn">🗑️</button>
-              <button class="icon-btn">👁</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>Juan Pérez Domínguez</td>
-            <td>Ingeniería de software</td>
-            <td>102</td>
-            <td>6</td>
-            <td>45%</td>
-            <td><span class="risk-dot high"></span></td>
-            <td class="actions-cell">
-              <button class="icon-btn">☰</button>
-              <button class="icon-btn">✏️</button>
-              <button class="icon-btn">🗑️</button>
-              <button class="icon-btn">👁</button>
-            </td>
-          </tr>
-          <!-- agrega más filas si quieres -->
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Footer de la tabla -->
-    <div class="table-footer">
-      Mostrando 1 - 12 de 12 resultados
-    </div>
-  </section>
-</div>
-
-
     </main>
   </div>
-   <!-- === Pop-up Acerca de SA-TA-DE === -->
-<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
-  <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <button class="about-close" (click)="closeAbout()">✖</button>
+  <!-- === Pop-up Acerca de SA-TA-DE === -->
+  <div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+    <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <div class="about-image">
-      <img src="desercion.jpeg" alt="Acerca de SATADE">
+      <button class="about-close" (click)="closeAbout()">✖</button>
+
+      <div class="about-image">
+        <img src="desercion.jpeg" alt="Acerca de SATADE">
+      </div>
+
+      <div class="about-text">
+        <p>
+          <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+          Deserción Escolar que utiliza el análisis de datos y modelos de
+          Inteligencia Artificial para identificar estudiantes con riesgo de
+          abandonar sus estudios.
+        </p>
+        <p>
+          La plataforma analiza información académica, socioeconómica y de
+          asistencia para generar alertas preventivas, permitiendo que tutores,
+          orientadores y coordinadores educativos intervengan a tiempo mediante
+          apoyo académico, psicológico o económico.
+        </p>
+        <p>
+          El objetivo principal es reducir la deserción escolar, mejorar la
+          continuidad educativa y fortalecer el bienestar estudiantil dentro de
+          las instituciones de nivel superior.
+        </p>
+      </div>
+
     </div>
-
-    <div class="about-text">
-      <p>
-        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
-        Deserción Escolar que utiliza el análisis de datos y modelos de
-        Inteligencia Artificial para identificar estudiantes con riesgo de
-        abandonar sus estudios.
-      </p>
-      <p>
-        La plataforma analiza información académica, socioeconómica y de
-        asistencia para generar alertas preventivas, permitiendo que tutores,
-        orientadores y coordinadores educativos intervengan a tiempo mediante
-        apoyo académico, psicológico o económico.
-      </p>
-      <p>
-        El objetivo principal es reducir la deserción escolar, mejorar la
-        continuidad educativa y fortalecer el bienestar estudiantil dentro de
-        las instituciones de nivel superior.
-      </p>
-    </div>
-
   </div>
-</div>
 </div>

@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
 /* ========== Layout general ========== */
 
 .home-layout {
@@ -75,13 +81,27 @@
   font-size: 18px;
 }
 
-/* ========== Contenido ========== */
+/* ========== Contenido (sidebar + panel) ========== */
 
 .home-content {
   flex: 1;
   display: flex;
-  padding: 16px 16px 24px;
-  gap: 16px;
+  padding: 24px 32px 32px;
+  gap: 24px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Panel principal a la derecha del menú */
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ========== Sidebar ========== */
@@ -161,20 +181,25 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+.menu-item.active {
+  background: #2e7d32;
+}
+
 .menu-icon-square,
 .menu-icon-circle {
   font-size: 16px;
 }
 
+/* ========== Página Reportes ========== */
 
-:host {
-  display: block;
-  width: 100%;
-}
-
-/* Contenedor de la página, permite que pueda crecer y haga scroll */
 .reports-page {
-  padding: 24px 32px 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0; /* el padding ya lo da .home-content */
   font-family: "Roboto", sans-serif;
 }
 
@@ -193,6 +218,9 @@
   border: 1px solid #d0d0d0;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   padding: 18px 22px 20px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 /* TOP: buscador + botones exportar */
@@ -338,7 +366,7 @@
   color: #555;
 }
 
-/* Sección inferior (segunda imagen) */
+/* Sección inferior */
 .reports-bottom-section {
   margin-top: 24px;
   display: flex;
@@ -352,6 +380,9 @@
   border-radius: 4px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   padding: 14px 18px 16px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 .bottom-title {
@@ -380,26 +411,6 @@
   font-weight: 600;
   border-bottom: 1px solid #e0e0e0;
 }
-
-/* Responsivo simple */
-@media (max-width: 960px) {
-  .reports-page {
-    padding: 16px;
-  }
-
-  .reports-charts-row {
-    grid-template-columns: 1fr;
-  }
-
-  .reports-top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-}
-
-
-/*pop up*/
 
 /* === Popup Acerca de SA-TA-DE === */
 
@@ -448,4 +459,61 @@
   margin: 4px 0;
   font-size: 13px;
   text-align: justify;
+}
+
+/* ========== Responsivo básico ========== */
+
+@media (max-width: 960px) {
+  .home-content {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sidebar-inner {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .reports-top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .reports-charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.btn-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: none;
+  padding: 8px 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn-export-icon img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.btn-export-text {
+  line-height: 1;
 }

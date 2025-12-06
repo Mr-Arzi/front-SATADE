@@ -1,209 +1,7 @@
+/* ====== Configuración base del componente ====== */
 :host {
   display: block;
   width: 100%;
-}
-
-/* Contenedor principal de la página de estudiantes */
-.students-page {
-  padding: 24px 32px 32px;
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Título principal (usa Montserrat/Poppins como en los demás) */
-.page-title {
-  margin: 0 0 18px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 22px;
-  color: #222;
-}
-
-/* Card blanca principal */
-.students-card {
-  background: #ffffff;
-  border-radius: 4px;
-  border: 1px solid #d0d0d0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  padding: 18px 22px 12px;
-}
-
-/* Header: buscador + botón */
-.students-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 10px;
-}
-
-/* Buscador */
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.search-input {
-  width: 260px;
-  padding: 8px 32px 8px 12px;
-  border-radius: 999px;
-  border: 1px solid #cccccc;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: #555;
-  outline: none;
-  background-color: #f5f5f5;
-}
-
-.search-input::placeholder {
-  color: #b0b0b0;
-}
-
-.search-icon {
-  margin-left: -32px;
-  font-size: 14px;
-  pointer-events: none;
-}
-
-.refresh-btn {
-  border: none;
-  background: transparent;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Botón Agregar Estudiante (Montserrat) */
-.btn-add-student {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: none;
-  background: #337eea;
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  box-shadow: 0 6px 12px rgba(51, 126, 234, 0.45);
-}
-
-.btn-add-student:hover {
-  background: #2d6ed0;
-}
-
-.add-icon {
-  font-size: 16px;
-}
-
-/* Leyenda de nivel de riesgo */
-.risk-legend {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  font-size: 12px;
-  margin-bottom: 8px;
-}
-
-.risk-label {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  color: #222;
-}
-
-.risk-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.risk-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-}
-
-.risk-dot.low {
-  background: #27ae60; /* verde */
-}
-
-.risk-dot.medium {
-  background: #f39c12; /* amarillo/naranja */
-}
-
-.risk-dot.high {
-  background: #e53935; /* rojo */
-}
-
-/* Tabla de estudiantes */
-.students-table-wrapper {
-  overflow-x: auto;
-}
-
-.students-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.students-table thead {
-  border-bottom: 1px solid #d0d0d0;
-}
-
-.students-table th,
-.students-table td {
-  padding: 6px 8px;
-  text-align: left;
-}
-
-.students-table th {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  color: #333;
-  font-size: 13px;
-}
-
-.students-table tbody tr:nth-child(even):not(.row-selected) {
-  background-color: #fafafa;
-}
-
-/* Fila seleccionada (azul claro) */
-.row-selected {
-  background-color: #dbeafe;
-}
-
-/* Riesgo en celdas */
-.students-table td .risk-dot {
-  margin-left: 4px;
-}
-
-/* Acciones */
-.actions-cell {
-  white-space: nowrap;
-}
-
-.icon-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-size: 14px;
-  margin: 0 2px;
-}
-
-/* Footer de la tabla */
-.table-footer {
-  margin-top: 8px;
-  font-size: 11px;
-  color: #555;
-}
-
-
-:host {
-  display: block;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
 }
@@ -215,6 +13,7 @@
   display: flex;
   flex-direction: column;
   background: #f5f5f5;
+  width: 100%;
 }
 
 /* ========== Barra superior ========== */
@@ -285,13 +84,27 @@
   font-size: 18px;
 }
 
-/* ========== Contenido ========== */
+/* ========== Contenido (sidebar + página) ========== */
 
 .home-content {
   flex: 1;
   display: flex;
-  padding: 16px 16px 24px;
-  gap: 16px;
+  gap: 24px;
+  padding: 24px 32px 32px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Panel principal */
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ========== Sidebar ========== */
@@ -371,13 +184,224 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+.menu-item.active {
+  background: #2e7d32;
+}
+
 .menu-icon-square,
 .menu-icon-circle {
   font-size: 16px;
 }
 
+/* ========== Página de Estudiantes ========== */
 
-/*pop up*/
+/* Contenedor principal de la página de estudiantes */
+.students-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  padding: 0; /* el padding ya viene de .home-content */
+}
+
+/* Título principal */
+.page-title {
+  margin: 0 0 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: #222;
+}
+
+/* Card blanca principal */
+.students-card {
+  background: #ffffff;
+  border-radius: 4px;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  padding: 18px 22px 12px;
+
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* Header: buscador + botón */
+.students-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+/* Buscador */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-input {
+  width: 260px;
+  padding: 8px 32px 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #cccccc;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  outline: none;
+  background-color: #f5f5f5;
+}
+
+.search-input::placeholder {
+  color: #b0b0b0;
+}
+
+.search-icon {
+  margin-left: -32px;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.refresh-btn {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Botón Agregar Estudiante */
+.btn-add-student {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #337eea;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(51, 126, 234, 0.45);
+}
+
+.btn-add-student:hover {
+  background: #2d6ed0;
+}
+
+.add-icon {
+  font-size: 16px;
+}
+
+/* Leyenda de nivel de riesgo */
+.risk-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.risk-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #222;
+}
+
+.risk-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.risk-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.risk-dot.low {
+  background: #27ae60;
+}
+
+.risk-dot.medium {
+  background: #f39c12;
+}
+
+.risk-dot.high {
+  background: #e53935;
+}
+
+/* Tabla de estudiantes */
+.students-table-wrapper {
+  overflow-x: auto;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.students-table thead {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.students-table th,
+.students-table td {
+  padding: 6px 8px;
+  text-align: left;
+}
+
+.students-table th {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #333;
+  font-size: 13px;
+}
+
+.students-table tbody tr:nth-child(even):not(.row-selected) {
+  background-color: #fafafa;
+}
+
+/* Fila seleccionada */
+.row-selected {
+  background-color: #dbeafe;
+}
+
+/* Riesgo en celdas */
+.students-table td .risk-dot {
+  margin-left: 4px;
+}
+
+/* Acciones */
+.actions-cell {
+  white-space: nowrap;
+}
+
+.icon-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 2px;
+}
+
+/* Footer de la tabla */
+.table-footer {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #555;
+}
 
 /* === Popup Acerca de SA-TA-DE === */
 
@@ -426,4 +450,17 @@
   margin: 4px 0;
   font-size: 13px;
   text-align: justify;
+}
+
+/* ====== Responsivo ====== */
+
+@media (max-width: 960px) {
+  .home-content {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .students-page {
+    padding: 0;
+  }
 }

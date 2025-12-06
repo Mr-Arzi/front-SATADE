@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ========== Layout general ========== */
 
 .home-layout {
   min-height: 100vh;
@@ -74,13 +81,26 @@
   font-size: 18px;
 }
 
-/* ========== Contenido ========== */
+/* ========== Contenido (sidebar + panel) ========== */
 
 .home-content {
   flex: 1;
   display: flex;
-  padding: 16px 16px 24px;
-  gap: 16px;
+  padding: 24px 32px 32px;
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Panel principal a la derecha del menú */
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ========== Sidebar ========== */
@@ -160,72 +180,25 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
+.menu-item.active {
+  background: #2e7d32;
+}
+
 .menu-icon-square,
 .menu-icon-circle {
   font-size: 16px;
 }
 
+/* ========== Página Registro Estudiante ========== */
 
-/*pop up*/
-
-/* === Popup Acerca de SA-TA-DE === */
-
-.about-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.about-modal {
-  background: #ffffff;
-  border-radius: 10px;
-  max-width: 420px;
-  width: 90%;
-  padding: 16px 18px 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  font-family: 'Roboto', sans-serif;
-  position: relative;
-}
-
-.about-close {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  border: none;
-  background: transparent;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.about-image {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.about-image img {
-  max-width: 100%;
-  height: auto;
-}
-
-.about-text p {
-  margin: 4px 0;
-  font-size: 13px;
-  text-align: justify;
-}
-
-
-:host {
-  display: block;
-  width: 100%;
-}
-
-/* Contenedor general */
 .student-register-page {
-  padding: 24px 32px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0; /* el padding ya lo da .home-content */
   font-family: "Roboto", sans-serif;
 }
 
@@ -245,6 +218,9 @@
   border: 1px solid #d0d0d0;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   padding: 16px 22px 20px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Top: buscador */
@@ -336,7 +312,7 @@
 }
 
 .sr-form-row {
-  display: contents; /* para que label e input ocupen columnas separadas */
+  display: contents; /* label e input ocupan columnas separadas */
 }
 
 .sr-form-row label {
@@ -409,9 +385,59 @@
   background: #c62828;
 }
 
+/* === Popup Acerca de SA-TA-DE === */
+
+.about-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.about-modal {
+  background: #ffffff;
+  border-radius: 10px;
+  max-width: 420px;
+  width: 90%;
+  padding: 16px 18px 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+}
+
+.about-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.about-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.about-text p {
+  margin: 4px 0;
+  font-size: 13px;
+  text-align: justify;
+}
+
 /* Responsivo simple */
 @media (max-width: 900px) {
-  .student-register-page {
+  .home-content {
+    flex-direction: column;
     padding: 16px;
   }
 

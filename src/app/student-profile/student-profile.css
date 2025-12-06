@@ -1,10 +1,204 @@
 :host {
   display: block;
-  width: 100%;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
-.student-profile-page {
+/* ========== Layout general ========== */
+
+.home-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+/* ========== Barra superior ========== */
+
+.topbar {
+  height: 64px;
+  background: #1c3557;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-mini {
+  height: 32px;
+  width: auto;
+  margin-left: 100px;
+}
+
+.topbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c3557;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #54b163;
+}
+
+.user-arrow {
+  font-size: 18px;
+}
+
+/* ========== Contenido (sidebar + panel) ========== */
+
+.home-content {
+  flex: 1;
+  display: flex;
   padding: 24px 32px 32px;
+  gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Panel principal */
+.dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========== Sidebar ========== */
+
+.sidebar {
+  width: 230px;
+  transition: width 0.2s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar.collapsed {
+  transform: translateX(-180px);
+}
+
+.menu-toggle {
+  position: absolute;
+  top: 1.5px;
+  left: 16px;
+  z-index: 1000;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+
+  background: #43a047;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon {
+  font-size: 30px;
+}
+
+.sidebar-inner {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 24px;
+  padding: 18px 10px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-item {
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #43a047;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.menu-item:not(.active) {
+  opacity: 0.9;
+}
+
+.menu-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menu-item.active {
+  background: #2e7d32;
+}
+
+.menu-icon-square,
+.menu-icon-circle {
+  font-size: 16px;
+}
+
+/* ========== Página Perfil Estudiante ========== */
+
+.student-profile-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0; /* padding viene de .home-content */
   font-family: 'Roboto', sans-serif;
 }
 
@@ -65,6 +259,9 @@
   border: 1px solid #d0d0d0;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   padding: 20px 24px 18px;
+
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Encabezado con avatar e info */
@@ -246,206 +443,14 @@
   background: #2d6ed0;
 }
 
-.tutoring-image {
-  display: flex;
-  align-items: flex-end;
+.tutoring-image img {
+    max-width: 100px; 
+    height: auto;
 }
 
 .owl-icon {
   font-size: 40px;
 }
-
-/* Responsivo simple */
-@media (max-width: 960px) {
-  .profile-middle {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-bottom {
-    justify-content: flex-start;
-  }
-
-  .tutoring-content {
-    max-width: 100%;
-  }
-
-  .tutoring-card {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    gap: 8px;
-  }
-}
-
-
-/* ========== Layout general ========== */
-
-.home-layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: #f5f5f5;
-}
-
-/* ========== Barra superior ========== */
-
-.topbar {
-  height: 64px;
-  background: #1c3557;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-}
-
-.topbar-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.logo-mini {
-  height: 32px;
-  width: auto;
-  margin-left: 100px;
-}
-
-.topbar-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  letter-spacing: 2px;
-  font-size: 20px;
-}
-
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #1c3557;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.user-name {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.user-role {
-  font-size: 12px;
-  color: #54b163;
-}
-
-.user-arrow {
-  font-size: 18px;
-}
-
-/* ========== Contenido ========== */
-
-.home-content {
-  flex: 1;
-  display: flex;
-  padding: 16px 16px 24px;
-  gap: 16px;
-}
-
-/* ========== Sidebar ========== */
-
-.sidebar {
-  width: 230px;
-  transition: width 0.2s ease, transform 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sidebar.collapsed {
-  transform: translateX(-180px);
-}
-
-.menu-toggle {
-  position: absolute;
-  top: 1.5px;
-  left: 16px;
-  z-index: 1000;
-
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-
-  background: #43a047;
-  color: #ffffff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-icon {
-  font-size: 30px;
-}
-
-.sidebar-inner {
-  width: 100%;
-  background: #e0e0e0;
-  border-radius: 24px;
-  padding: 18px 10px;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.menu-item {
-  width: 100%;
-  border-radius: 20px;
-  border: none;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #43a047;
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
-
-.menu-item:not(.active) {
-  opacity: 0.9;
-}
-
-.menu-item:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.menu-icon-square,
-.menu-icon-circle {
-  font-size: 16px;
-}
-
-/*pop up*/
 
 /* === Popup Acerca de SA-TA-DE === */
 
@@ -494,4 +499,30 @@
   margin: 4px 0;
   font-size: 13px;
   text-align: justify;
+}
+
+/* Responsivo simple */
+@media (max-width: 960px) {
+  .home-content {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .profile-middle {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-bottom {
+    justify-content: flex-start;
+  }
+
+  .tutoring-content {
+    max-width: 100%;
+  }
+
+  .tutoring-card {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }

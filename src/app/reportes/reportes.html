@@ -5,7 +5,7 @@
     <div class="topbar-left">
       <img
         class="logo-mini"
-        src="satadelogoblanco.jpg"
+        src="satadelogoblanco.png"
         alt="Logo SATADE"
       />
       <span class="topbar-title">SATADE</span>
@@ -26,241 +26,244 @@
   <!-- Contenido general -->
   <div class="home-content">
 
-      <!-- Menú lateral desplegable -->
-<button class="menu-toggle" (click)="toggleMenu()">
-  <span class="menu-icon">☰</span>
-</button>
-
-<aside class="sidebar" [class.collapsed]="!isMenuOpen">
-
-  <div class="sidebar-inner">
-
-    <button class="menu-item active" routerLink="/home">
-      <span class="menu-icon-square">▦</span>
-      <span>Inicio</span>
+    <!-- Menú lateral desplegable -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span class="menu-icon">☰</span>
     </button>
 
-    <button class="menu-item" (click)="openAbout()">
-      <span class="menu-icon-circle">?</span>
-      <span>Acerca de...</span>
-    </button>
+    <aside class="sidebar" [class.collapsed]="!isMenuOpen">
 
-    <button class="menu-item" routerLink="/estudiantes" >
-      <span class="menu-icon-circle">👥</span>
-      <span>Estudiantes</span>
-    </button>
+      <div class="sidebar-inner">
 
+        <button class="menu-item" routerLink="/home">
+          <span class="menu-icon-square">▦</span>
+          <span>Inicio</span>
+        </button>
 
-    <button class="menu-item" routerLink="/alertas">
-      <span class="menu-icon-circle">!</span>
-      <span>Alertas<br>Tempranas</span>
-    </button>
+        <button class="menu-item" (click)="openAbout()">
+          <span class="menu-icon-circle">?</span>
+          <span>Acerca de...</span>
+        </button>
 
-    <button class="menu-item" routerLink="/registro-intervenciones">
-      <span class="menu-icon-circle">📈</span>
-      <span>Seguimiento</span>
-    </button>
+        <button class="menu-item" routerLink="/estudiantes">
+          <span class="menu-icon-circle">👥</span>
+          <span>Estudiantes</span>
+        </button>
 
-    <button class="menu-item"  routerLink="/reportes">
-      <span class="menu-icon-circle">📄</span>
-      <span>Reportes</span>
-    </button>
+        <button class="menu-item" routerLink="/alertas">
+          <span class="menu-icon-circle">!</span>
+          <span>Alertas<br>Tempranas</span>
+        </button>
 
-  </div>
-</aside>
+        <button class="menu-item" routerLink="/registro-intervenciones">
+          <span class="menu-icon-circle">📈</span>
+          <span>Seguimiento</span>
+        </button>
 
+        <button class="menu-item active" routerLink="/reportes">
+          <span class="menu-icon-circle">📄</span>
+          <span>Reportes</span>
+        </button>
+
+      </div>
+    </aside>
 
     <!-- Panel principal -->
     <main class="dashboard">
-        <div class="reports-page">
+      <div class="reports-page">
 
-  <h1 class="page-title">Reportes y Estadísticas</h1>
+        <h1 class="page-title">Reportes y Estadísticas</h1>
 
-  <!-- CARD SUPERIOR -->
-  <section class="reports-card">
+        <!-- CARD SUPERIOR -->
+        <section class="reports-card">
 
-    <!-- Fila buscador + exportar -->
-    <div class="reports-top-bar">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input
-          type="text"
-          class="search-input"
-          placeholder="Buscar por fecha"
-        />
-        <button class="refresh-btn" type="button">⟳</button>
-      </div>
+          <!-- Fila buscador + exportar -->
+          <div class="reports-top-bar">
+            <div class="search-box">
+              <span class="search-icon">🔍</span>
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Buscar por fecha"
+              />
+              <button class="refresh-btn" type="button">⟳</button>
+            </div>
 
-      <div class="export-buttons">
-        <button type="button" class="btn-export excel">
-          📗 Exportar
-        </button>
-        <button type="button" class="btn-export pdf">
-          📕 Exportar
-        </button>
-      </div>
-    </div>
+            <div class="export-buttons">
+  <button type="button" class="btn-export excel">
+    <span class="btn-export-icon">
+      <img src="excel.png" alt="Icono Excel" />
+    </span>
+    <span class="btn-export-text">Exportar</span>
+  </button>
 
-    <!-- Deserción por carrera -->
-    <div class="desercion-card">
-      <div class="desercion-title">Deserción por carrera</div>
-
-      <div class="desercion-row">
-        <span class="desercion-label">Medicina ----------------------------------------------</span>
-        <div class="desercion-bar">
-          <div class="desercion-bar-fill" style="width: 65%"></div>
-        </div>
-        <span class="desercion-value">13%</span>
-      </div>
-
-      <div class="desercion-row">
-        <span class="desercion-label">Ingeniería eléctrica --------------------------------</span>
-        <div class="desercion-bar">
-          <div class="desercion-bar-fill" style="width: 50%"></div>
-        </div>
-        <span class="desercion-value">10%</span>
-      </div>
-
-      <div class="desercion-row">
-        <span class="desercion-label">Ingeniería Química ---------------------------------</span>
-        <div class="desercion-bar">
-          <div class="desercion-bar-fill" style="width: 40%"></div>
-        </div>
-        <span class="desercion-value">8%</span>
-      </div>
-    </div>
-
-    <!-- Gráficos de abajo (mismos de la primera imagen) -->
-    <div class="reports-charts-row">
-      <div class="chart-card">
-        <div class="chart-title">Distribución de niveles de riesgo</div>
-        <div class="chart-placeholder pie">
-          <!-- Aquí luego puedes montar un gráfico real -->
-          <span>Gráfico de pastel (placeholder)</span>
-        </div>
-      </div>
-
-      <div class="chart-card">
-        <div class="chart-title">Tendencia de deserción por semestres</div>
-        <div class="chart-placeholder line">
-          <span>Gráfico de líneas (placeholder)</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEGUNDA PARTE (scroll hacia abajo) -->
-  <section class="reports-bottom-section">
-
-    <!-- Reporte de factores asociados -->
-    <div class="bottom-card">
-      <div class="bottom-title">Reporte de Factores Asociados</div>
-      <table class="bottom-table">
-        <thead>
-          <tr>
-            <th>Factor</th>
-            <th>Impacto</th>
-            <th>Observación</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Baja asistencia</td>
-            <td>Alto</td>
-            <td>Relacionado con estudiantes que trabajan</td>
-          </tr>
-          <tr>
-            <td>Bajo rendimiento</td>
-            <td>Alto</td>
-            <td>Más visible en primeros semestres</td>
-          </tr>
-          <tr>
-            <td>Problemas económicos</td>
-            <td>Medio</td>
-            <td>Detectado por tutorías</td>
-          </tr>
-          <tr>
-            <td>Factores emocionales</td>
-            <td>Medio</td>
-            <td>Detecciones en psicología</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Efectividad de intervenciones -->
-    <div class="bottom-card">
-      <div class="bottom-title">Efectividad de intervenciones</div>
-      <table class="bottom-table">
-        <thead>
-          <tr>
-            <th>Tipo de intervención</th>
-            <th>Estudiantes atendidos</th>
-            <th>Mejoraron</th>
-            <th>No mejoraron</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Tutorías académicas</td>
-            <td>48</td>
-            <td>34</td>
-            <td>14</td>
-          </tr>
-          <tr>
-            <td>Psicología</td>
-            <td>22</td>
-            <td>13</td>
-            <td>9</td>
-          </tr>
-          <tr>
-            <td>Apoyo económico</td>
-            <td>10</td>
-            <td>9</td>
-            <td>1</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  </section>
-
+  <button type="button" class="btn-export pdf">
+    <span class="btn-export-icon">
+      <img src="pdf.png" alt="Icono PDF" />
+    </span>
+    <span class="btn-export-text">Exportar</span>
+  </button>
 </div>
 
+          </div>
 
+          <!-- Deserción por carrera -->
+          <div class="desercion-card">
+            <div class="desercion-title">Deserción por carrera</div>
+
+            <div class="desercion-row">
+              <span class="desercion-label">Medicina ----------------------------------------------</span>
+              <div class="desercion-bar">
+                <div class="desercion-bar-fill" style="width: 65%"></div>
+              </div>
+              <span class="desercion-value">13%</span>
+            </div>
+
+            <div class="desercion-row">
+              <span class="desercion-label">Ingeniería eléctrica --------------------------------</span>
+              <div class="desercion-bar">
+                <div class="desercion-bar-fill" style="width: 50%"></div>
+              </div>
+              <span class="desercion-value">10%</span>
+            </div>
+
+            <div class="desercion-row">
+              <span class="desercion-label">Ingeniería Química ---------------------------------</span>
+              <div class="desercion-bar">
+                <div class="desercion-bar-fill" style="width: 40%"></div>
+              </div>
+              <span class="desercion-value">8%</span>
+            </div>
+          </div>
+
+          <!-- Gráficos de abajo -->
+          <div class="reports-charts-row">
+            <div class="chart-card">
+              <div class="chart-title">Distribución de niveles de riesgo</div>
+              <div class="chart-placeholder pie">
+                <span>Gráfico de pastel (placeholder)</span>
+              </div>
+            </div>
+
+            <div class="chart-card">
+              <div class="chart-title">Tendencia de deserción por semestres</div>
+              <div class="chart-placeholder line">
+                <span>Gráfico de líneas (placeholder)</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SEGUNDA PARTE -->
+        <section class="reports-bottom-section">
+
+          <!-- Reporte de factores asociados -->
+          <div class="bottom-card">
+            <div class="bottom-title">Reporte de Factores Asociados</div>
+            <table class="bottom-table">
+              <thead>
+                <tr>
+                  <th>Factor</th>
+                  <th>Impacto</th>
+                  <th>Observación</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Baja asistencia</td>
+                  <td>Alto</td>
+                  <td>Relacionado con estudiantes que trabajan</td>
+                </tr>
+                <tr>
+                  <td>Bajo rendimiento</td>
+                  <td>Alto</td>
+                  <td>Más visible en primeros semestres</td>
+                </tr>
+                <tr>
+                  <td>Problemas económicos</td>
+                  <td>Medio</td>
+                  <td>Detectado por tutorías</td>
+                </tr>
+                <tr>
+                  <td>Factores emocionales</td>
+                  <td>Medio</td>
+                  <td>Detecciones en psicología</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Efectividad de intervenciones -->
+          <div class="bottom-card">
+            <div class="bottom-title">Efectividad de intervenciones</div>
+            <table class="bottom-table">
+              <thead>
+                <tr>
+                  <th>Tipo de intervención</th>
+                  <th>Estudiantes atendidos</th>
+                  <th>Mejoraron</th>
+                  <th>No mejoraron</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tutorías académicas</td>
+                  <td>48</td>
+                  <td>34</td>
+                  <td>14</td>
+                </tr>
+                <tr>
+                  <td>Psicología</td>
+                  <td>22</td>
+                  <td>13</td>
+                  <td>9</td>
+                </tr>
+                <tr>
+                  <td>Apoyo económico</td>
+                  <td>10</td>
+                  <td>9</td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </section>
+
+      </div>
     </main>
   </div>
-   <!-- === Pop-up Acerca de SA-TA-DE === -->
-<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
-  <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <button class="about-close" (click)="closeAbout()">✖</button>
+  <!-- === Pop-up Acerca de SA-TA-DE === -->
+  <div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+    <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <div class="about-image">
-      <img src="desercion.jpeg" alt="Acerca de SATADE">
+      <button class="about-close" (click)="closeAbout()">✖</button>
+
+      <div class="about-image">
+        <img src="desercion.jpeg" alt="Acerca de SATADE">
+      </div>
+
+      <div class="about-text">
+        <p>
+          <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+          Deserción Escolar que utiliza el análisis de datos y modelos de
+          Inteligencia Artificial para identificar estudiantes con riesgo de
+          abandonar sus estudios.
+        </p>
+        <p>
+          La plataforma analiza información académica, socioeconómica y de
+          asistencia para generar alertas preventivas, permitiendo que tutores,
+          orientadores y coordinadores educativos intervengan a tiempo mediante
+          apoyo académico, psicológico o económico.
+        </p>
+        <p>
+          El objetivo principal es reducir la deserción escolar, mejorar la
+          continuidad educativa y fortalecer el bienestar estudiantil dentro de
+          las instituciones de nivel superior.
+        </p>
+      </div>
+
     </div>
-
-    <div class="about-text">
-      <p>
-        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
-        Deserción Escolar que utiliza el análisis de datos y modelos de
-        Inteligencia Artificial para identificar estudiantes con riesgo de
-        abandonar sus estudios.
-      </p>
-      <p>
-        La plataforma analiza información académica, socioeconómica y de
-        asistencia para generar alertas preventivas, permitiendo que tutores,
-        orientadores y coordinadores educativos intervengan a tiempo mediante
-        apoyo académico, psicológico o económico.
-      </p>
-      <p>
-        El objetivo principal es reducir la deserción escolar, mejorar la
-        continuidad educativa y fortalecer el bienestar estudiantil dentro de
-        las instituciones de nivel superior.
-      </p>
-    </div>
-
   </div>
 </div>
-</div>
-

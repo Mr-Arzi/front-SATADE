@@ -5,7 +5,7 @@
     <div class="topbar-left">
       <img
         class="logo-mini"
-        src="satadelogoblanco.jpg"
+        src="satadelogoblanco.png"
         alt="Logo SATADE"
       />
       <span class="topbar-title">SATADE</span>
@@ -26,206 +26,209 @@
   <!-- Contenido general -->
   <div class="home-content">
 
-      <!-- Menú lateral desplegable -->
-<button class="menu-toggle" (click)="toggleMenu()">
-  <span class="menu-icon">☰</span>
-</button>
-
-<aside class="sidebar" [class.collapsed]="!isMenuOpen">
-
-  <div class="sidebar-inner">
-
-    <button class="menu-item active" routerLink="/home">
-      <span class="menu-icon-square">▦</span>
-      <span>Inicio</span>
+    <!-- Menú lateral desplegable -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span class="menu-icon">☰</span>
     </button>
 
-    <button class="menu-item" (click)="openAbout()">
-      <span class="menu-icon-circle">?</span>
-      <span>Acerca de...</span>
-    </button>
+    <aside class="sidebar" [class.collapsed]="!isMenuOpen">
+      <div class="sidebar-inner">
 
-    <button class="menu-item" routerLink="/estudiantes" >
-      <span class="menu-icon-circle">👥</span>
-      <span>Estudiantes</span>
-    </button>
+        <button class="menu-item " routerLink="/home">
+          <span class="menu-icon-square">▦</span>
+          <span>Inicio</span>
+        </button>
 
+        <button class="menu-item" (click)="openAbout()">
+          <span class="menu-icon-circle">?</span>
+          <span>Acerca de...</span>
+        </button>
 
-    <button class="menu-item" routerLink="/alertas">
-      <span class="menu-icon-circle">!</span>
-      <span>Alertas<br>Tempranas</span>
-    </button>
+        <button class="menu-item" routerLink="/estudiantes">
+          <span class="menu-icon-circle">👥</span>
+          <span>Estudiantes</span>
+        </button>
 
-    <button class="menu-item" routerLink="/registro-intervenciones">
-      <span class="menu-icon-circle">📈</span>
-      <span>Seguimiento</span>
-    </button>
+        <button class="menu-item active" routerLink="/alertas">
+          <span class="menu-icon-circle">!</span>
+          <span>Alertas<br>Tempranas</span>
+        </button>
 
-    <button class="menu-item"  routerLink="/reportes">
-      <span class="menu-icon-circle">📄</span>
-      <span>Reportes</span>
-    </button>
+        <button class="menu-item" routerLink="/registro-intervenciones">
+          <span class="menu-icon-circle">📈</span>
+          <span>Seguimiento</span>
+        </button>
 
-  </div>
-</aside>
+        <button class="menu-item" routerLink="/reportes">
+          <span class="menu-icon-circle">📄</span>
+          <span>Reportes</span>
+        </button>
 
+      </div>
+    </aside>
 
     <!-- Panel principal -->
     <main class="dashboard">
-        <div class="alerts-page">
-  <h1 class="page-title">Alertas Activas</h1>
+      <div class="alerts-page">
+        <h1 class="page-title">Alertas Activas</h1>
 
-  <!-- Card principal -->
-  <section class="alerts-card">
+        <!-- Card principal -->
+        <section class="alerts-card">
 
-    <!-- Buscador -->
-    <div class="alerts-header">
-      <div class="search-box">
-        <input
-          type="text"
-          class="search-input"
-          placeholder="Buscar por nombre"
-        />
-        <span class="search-icon">🔍</span>
-        <button class="refresh-btn" type="button">⟳</button>
+          <!-- Buscador -->
+          <div class="alerts-header">
+            <div class="search-box">
+              <input
+                type="text"
+                class="search-input"
+                placeholder="Buscar por nombre"
+              />
+              <span class="search-icon">🔍</span>
+              <button class="refresh-btn" type="button">⟳</button>
+            </div>
+          </div>
+
+          <!-- Tabla de alertas -->
+          <div class="alerts-table-wrapper">
+            <table class="alerts-table">
+              <thead>
+                <tr>
+                  <th>Estudiante</th>
+                  <th>Motivo</th>
+                  <th>Nivel</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <!-- Fila 1 -->
+                <tr>
+                  <td>María Elena Fernandez Cortés</td>
+                  <td>Ausencias recurrentes</td>
+                  <td><span class="risk-dot high"></span></td>
+
+                  <td class="actions-cell">
+                    <button
+                      class="btn-assign"
+                      type="button"
+                      (click)="abrirIntervencion('María Elena Fernandez Cortés', $event)"
+                    >
+                      Asignar intervención
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Fila 2 -->
+                <tr>
+                  <td>Marco Jiménez Cabrera</td>
+                  <td>Baja calificación</td>
+                  <td><span class="risk-dot high"></span></td>
+
+                  <td class="actions-cell">
+                    <button
+                      class="btn-assign"
+                      type="button"
+                      (click)="abrirIntervencion('Marco Jiménez Cabrera', $event)"
+                    >
+                      Asignar intervención
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </section>
       </div>
-    </div>
 
-    <!-- Tabla de alertas -->
-    <div class="alerts-table-wrapper">
-      <table class="alerts-table">
-        <thead>
-          <tr>
-            <th>Estudiante</th>
-            <th>Motivo</th>
-            <th>Nivel</th>
-            <th>Acción</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>María Elena Fernandez Cortés</td>
-            <td>Ausencias recurrentes</td>
-            <td><span class="risk-dot high"></span></td>
-            <td>
-              <button
-                class="btn-assign"
-                type="button"
-                (click)="abrirIntervencion('María Elena Fernandez Cortés')"
-              >
-                Asignar intervención
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Marco Jiménez Cabrera</td>
-            <td>Baja calificación</td>
-            <td><span class="risk-dot high"></span></td>
-            <td>
-              <button
-                class="btn-assign"
-                type="button"
-                (click)="abrirIntervencion('Marco Jiménez Cabrera')"
-              >
-                Asignar intervención
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- === POPOVER GLOBAL DE INTERVENCIÓN (FLOTANTE) === -->
+      <div
+        class="intervention-popover-global"
+        *ngIf="showIntervention"
+        [style.top.px]="popoverY"
+        [style.left.px]="popoverX"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="intervention-header">
+          <h2>Asignar intervención</h2>
+          <span class="student-tag">{{ selectedStudent }}</span>
+        </div>
 
-  </section>
+        <div class="form-group">
+          <label>Tipo de intervención:</label>
+          <select class="select-field">
+            <option selected disabled>Seleccionar</option>
+            <option>Tutoría académica</option>
+            <option>Sesión con psicología</option>
+            <option>Apoyo económico</option>
+            <option>Comunicación con tutores</option>
+            <option>Canalización a trabajo social</option>
+            <option>Taller de hábitos de estudio</option>
+          </select>
+        </div>
 
-  <!-- Panel de Asignar intervención (segunda imagen) -->
-  <section class="intervention-panel" *ngIf="showIntervention">
-    <div class="intervention-header">
-      <h2>Asignar intervención</h2>
-      <span class="student-tag" *ngIf="selectedStudent">
-        {{ selectedStudent }}
-      </span>
-    </div>
+        <div class="form-group">
+          <label>Responsable:</label>
+          <select class="select-field">
+            <option selected disabled>Seleccionar</option>
+            <option>Dylan Tellez Silva - Tutor</option>
+            <option>Ana Perez Ferrer - Psicólogo</option>
+            <option>Rogelio Luna - Coordinador</option>
+          </select>
+        </div>
 
-    <!-- Tipo de intervención -->
-    <div class="form-group">
-      <label>Tipo de intervención:</label>
-      <select class="select-field">
-        <option selected disabled>Seleccionar</option>
-        <option>Tutoría académica</option>
-        <option>Sesión con psicología</option>
-        <option>Apoyo económico</option>
-        <option>Comunicación con tutores</option>
-        <option>Canalización a trabajo social</option>
-        <option>Taller de hábitos de estudio</option>
-      </select>
-    </div>
+        <div class="form-group">
+          <label>Definir fecha:</label>
+          <div class="date-wrapper">
+            <input type="date" class="select-field" />
+            <span class="calendar-icon">📅</span>
+          </div>
+        </div>
 
-    <!-- Responsable -->
-    <div class="form-group">
-      <label>Responsable:</label>
-      <select class="select-field">
-        <option selected disabled>Seleccionar</option>
-        <option>Dylan Tellez Silva - Tutor</option>
-        <option>Ana Perez Ferrer - Psicólogo</option>
-        <option>Rogelio Luna - Coordinador</option>
-      </select>
-    </div>
-
-    <!-- Fecha -->
-    <div class="form-group">
-      <label>Definir fecha:</label>
-      <div class="date-wrapper">
-        <input type="date" class="select-field" />
-        <span class="calendar-icon">📅</span>
+        <div class="form-actions">
+          <button type="button" class="btn-save" (click)="cerrarIntervencion()">
+            ⬇ Guardar
+          </button>
+          <button type="button" class="btn-cancel" (click)="cerrarIntervencion()">
+            ✖ Cancelar
+          </button>
+        </div>
       </div>
-    </div>
-
-    <!-- Botones -->
-    <div class="form-actions">
-      <button type="button" class="btn-save" (click)="cerrarIntervencion()">
-        ⬇ Guardar
-      </button>
-      <button type="button" class="btn-cancel" (click)="cerrarIntervencion()">
-        ✖ Cancelar
-      </button>
-    </div>
-  </section>
-</div>
-
-
+      <!-- === FIN POPOVER GLOBAL === -->
 
     </main>
   </div>
-   <!-- === Pop-up Acerca de SA-TA-DE === -->
-<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
-  <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <button class="about-close" (click)="closeAbout()">✖</button>
+  <!-- === Pop-up Acerca de SA-TA-DE === -->
+  <div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+    <div class="about-modal" (click)="$event.stopPropagation()">
+      <button class="about-close" (click)="closeAbout()">✖</button>
 
-    <div class="about-image">
-      <img src="desercion.jpeg" alt="Acerca de SATADE">
+      <div class="about-image">
+        <img src="desercion.jpeg" alt="Acerca de SATADE" />
+      </div>
+
+      <div class="about-text">
+        <p>
+          <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+          Deserción Escolar que utiliza el análisis de datos y modelos de
+          Inteligencia Artificial para identificar estudiantes con riesgo de
+          abandonar sus estudios.
+        </p>
+        <p>
+          La plataforma analiza información académica, socioeconómica y de
+          asistencia para generar alertas preventivas, permitiendo que tutores,
+          orientadores y coordinadores educativos intervengan a tiempo mediante
+          apoyo académico, psicológico o económico.
+        </p>
+        <p>
+          El objetivo principal es reducir la deserción escolar, mejorar la
+          continuidad educativa y fortalecer el bienestar estudiantil dentro de
+          las instituciones de nivel superior.
+        </p>
+      </div>
+
     </div>
-
-    <div class="about-text">
-      <p>
-        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
-        Deserción Escolar que utiliza el análisis de datos y modelos de
-        Inteligencia Artificial para identificar estudiantes con riesgo de
-        abandonar sus estudios.
-      </p>
-      <p>
-        La plataforma analiza información académica, socioeconómica y de
-        asistencia para generar alertas preventivas, permitiendo que tutores,
-        orientadores y coordinadores educativos intervengan a tiempo mediante
-        apoyo académico, psicológico o económico.
-      </p>
-      <p>
-        El objetivo principal es reducir la deserción escolar, mejorar la
-        continuidad educativa y fortalecer el bienestar estudiantil dentro de
-        las instituciones de nivel superior.
-      </p>
-    </div>
-
   </div>
-</div>
 </div>

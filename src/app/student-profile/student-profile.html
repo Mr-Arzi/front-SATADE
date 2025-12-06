@@ -5,7 +5,7 @@
     <div class="topbar-left">
       <img
         class="logo-mini"
-        src="satadelogoblanco.jpg"
+        src="satadelogoblanco.png"
         alt="Logo SATADE"
       />
       <span class="topbar-title">SATADE</span>
@@ -26,263 +26,259 @@
   <!-- Contenido general -->
   <div class="home-content">
 
-      <!-- Menú lateral desplegable -->
-<button class="menu-toggle" (click)="toggleMenu()">
-  <span class="menu-icon">☰</span>
-</button>
-
-<aside class="sidebar" [class.collapsed]="!isMenuOpen">
-
-  <div class="sidebar-inner">
-
-    <button class="menu-item active" routerLink="/home">
-      <span class="menu-icon-square">▦</span>
-      <span>Inicio</span>
+    <!-- Menú lateral desplegable -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span class="menu-icon">☰</span>
     </button>
 
-    <button class="menu-item" (click)="openAbout()">
-      <span class="menu-icon-circle">?</span>
-      <span>Acerca de...</span>
-    </button>
+    <aside class="sidebar" [class.collapsed]="!isMenuOpen">
 
-    <button class="menu-item" routerLink="/estudiantes" >
-      <span class="menu-icon-circle">👥</span>
-      <span>Estudiantes</span>
-    </button>
+      <div class="sidebar-inner">
 
+        <button class="menu-item" routerLink="/home">
+          <span class="menu-icon-square">▦</span>
+          <span>Inicio</span>
+        </button>
 
-    <button class="menu-item" routerLink="/alertas">
-      <span class="menu-icon-circle">!</span>
-      <span>Alertas<br>Tempranas</span>
-    </button>
+        <button class="menu-item" (click)="openAbout()">
+          <span class="menu-icon-circle">?</span>
+          <span>Acerca de...</span>
+        </button>
 
-    <button class="menu-item" routerLink="/registro-intervenciones">
-      <span class="menu-icon-circle">📈</span>
-      <span>Seguimiento</span>
-    </button>
+        <button class="menu-item active" routerLink="/estudiantes">
+          <span class="menu-icon-circle">👥</span>
+          <span>Estudiantes</span>
+        </button>
 
-    <button class="menu-item"  routerLink="/reportes">
-      <span class="menu-icon-circle">📄</span>
-      <span>Reportes</span>
-    </button>
+        <button class="menu-item" routerLink="/alertas">
+          <span class="menu-icon-circle">!</span>
+          <span>Alertas<br>Tempranas</span>
+        </button>
 
-  </div>
-</aside>
+        <button class="menu-item" routerLink="/registro-intervenciones">
+          <span class="menu-icon-circle">📈</span>
+          <span>Seguimiento</span>
+        </button>
 
+        <button class="menu-item" routerLink="/reportes">
+          <span class="menu-icon-circle">📄</span>
+          <span>Reportes</span>
+        </button>
+
+      </div>
+    </aside>
 
     <!-- Panel principal -->
     <main class="dashboard">
-        <div class="student-profile-page">
+      <div class="student-profile-page">
 
-  <h1 class="page-title">Perfil de Estudiante</h1>
+        <h1 class="page-title">Perfil de Estudiante</h1>
 
-  <!-- Buscador, igual que en estudiantes -->
-  <div class="profile-search-bar">
-    <div class="search-box">
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Buscar por nombre"
-      />
-      <span class="search-icon">🔍</span>
-      <button class="refresh-btn" type="button">⟳</button>
-    </div>
-  </div>
-
-  <!-- Tarjeta principal -->
-  <section class="profile-card">
-
-    <!-- Encabezado con avatar e info básica -->
-    <div class="profile-header">
-      <div class="profile-avatar">
-        <!-- Puedes reemplazar por una imagen real -->
-        <span class="avatar-icon">👩‍🎓</span>
-      </div>
-
-      <div class="profile-header-info">
-        <div class="profile-line">
-          <span class="label">Nombre del alumno:</span>
-          <span class="value strong">Tamara Torres Trujillo</span>
+        <!-- Buscador, igual que en estudiantes -->
+        <div class="profile-search-bar">
+          <div class="search-box">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Buscar por nombre"
+            />
+            <span class="search-icon">🔍</span>
+            <button class="refresh-btn" type="button">⟳</button>
+          </div>
         </div>
 
-        <div class="profile-line">
-          <span class="label">Semestre:</span>
-          <span class="value">3°</span>
+        <!-- Tarjeta principal -->
+        <section class="profile-card">
 
-          <span class="label">Carrera:</span>
-          <span class="value">Medicina</span>
+          <!-- Encabezado con avatar e info básica -->
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <!-- Puedes reemplazar por una imagen real -->
+              <span class="avatar-icon">👩‍🎓</span>
+            </div>
 
-          <span class="label">Tutor:</span>
-          <span class="value strong">Dr. Rodrigo Suárez</span>
-        </div>
+            <div class="profile-header-info">
+              <div class="profile-line">
+                <span class="label">Nombre del alumno:</span>
+                <span class="value strong">Tamara Torres Trujillo</span>
+              </div>
 
-        <div class="profile-line">
-          <span class="label">Estado actual:</span>
-          <span class="risk-dot medium"></span>
-          <span class="value">Riesgo medio</span>
-        </div>
+              <div class="profile-line">
+                <span class="label">Semestre:</span>
+                <span class="value">3°</span>
+
+                <span class="label">Carrera:</span>
+                <span class="value">Medicina</span>
+
+                <span class="label">Tutor:</span>
+                <span class="value strong">Dr. Rodrigo Suárez</span>
+              </div>
+
+              <div class="profile-line">
+                <span class="label">Estado actual:</span>
+                <span class="risk-dot medium"></span>
+                <span class="value">Riesgo medio</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tarjetas centrales -->
+          <div class="profile-middle">
+            <!-- Info personal -->
+            <div class="info-card">
+              <div class="info-title">Información Personal</div>
+              <div class="info-row">
+                <span class="info-label">Matrícula:</span>
+                <span class="info-value">20213547</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Edad:</span>
+                <span class="info-value">20 años</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Teléfono:</span>
+                <span class="info-value">272-123-77-00</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Correo institucional:</span>
+                <span class="info-value">
+                  Tamara.Torres@uv.mx
+                </span>
+              </div>
+            </div>
+
+            <!-- Histórico académico -->
+            <div class="info-card">
+              <div class="info-title">Histórico Académico</div>
+              <table class="small-table">
+                <thead>
+                  <tr>
+                    <th>Semestre</th>
+                    <th>Promedio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1°</td>
+                    <td>9.1</td>
+                  </tr>
+                  <tr>
+                    <td>2°</td>
+                    <td>8.7</td>
+                  </tr>
+                  <tr>
+                    <td>3°</td>
+                    <td>8.4</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Asistencia -->
+            <div class="info-card">
+              <div class="info-title">Asistencia</div>
+              <table class="small-table">
+                <thead>
+                  <tr>
+                    <th>Periodo</th>
+                    <th>Asistencia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Semanas recientes</td>
+                    <td>85%</td>
+                  </tr>
+                  <tr>
+                    <td>Promedio general</td>
+                    <td>91%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Historial del riesgo -->
+          <div class="profile-bottom">
+            <div class="info-card risk-history">
+              <div class="info-title">Historial del Riesgo</div>
+              <table class="small-table">
+                <thead>
+                  <tr>
+                    <th>Fecha</th>
+                    <th>Nivel</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Inicio semestre</td>
+                    <td>
+                      <span class="risk-dot low"></span> Bajo
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Semana 5</td>
+                    <td>
+                      <span class="risk-dot medium"></span> Medio
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recomendación / Programar tutoría -->
+          <div class="tutoring-card">
+            <div class="tutoring-content">
+              <p class="tutoring-text">
+                “Se sugiere programar tutoría académica para reforzar
+                hábitos de estudio. De preferencia dentro de los próximos 7 días.”
+              </p>
+              <button class="btn-tutoring">Programar tutoría</button>
+            </div>
+
+            <!-- Aquí puedes poner tu búho/mascota -->
+            <div class="tutoring-image">
+              <img src="buho2.png" alt="Tutor" /> 
+              
+            </div>
+          </div>
+
+        </section>
       </div>
-    </div>
-
-    <!-- Tarjetas centrales -->
-    <div class="profile-middle">
-      <!-- Info personal -->
-      <div class="info-card">
-        <div class="info-title">Información Personal</div>
-        <div class="info-row">
-          <span class="info-label">Matrícula:</span>
-          <span class="info-value">20213547</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Edad:</span>
-          <span class="info-value">20 años</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Teléfono:</span>
-          <span class="info-value">272-123-77-00</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Correo institucional:</span>
-          <span class="info-value">
-            Tamara.Torres@uv.mx
-          </span>
-        </div>
-      </div>
-
-      <!-- Histórico académico -->
-      <div class="info-card">
-        <div class="info-title">Histórico Académico</div>
-        <table class="small-table">
-          <thead>
-            <tr>
-              <th>Semestre</th>
-              <th>Promedio</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1°</td>
-              <td>9.1</td>
-            </tr>
-            <tr>
-              <td>2°</td>
-              <td>8.7</td>
-            </tr>
-            <tr>
-              <td>3°</td>
-              <td>8.4</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Asistencia -->
-      <div class="info-card">
-        <div class="info-title">Asistencia</div>
-        <table class="small-table">
-          <thead>
-            <tr>
-              <th>Periodo</th>
-              <th>Asistencia</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Semanas recientes</td>
-              <td>85%</td>
-            </tr>
-            <tr>
-              <td>Promedio general</td>
-              <td>91%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Historial del riesgo -->
-    <div class="profile-bottom">
-      <div class="info-card risk-history">
-        <div class="info-title">Historial del Riesgo</div>
-        <table class="small-table">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Nivel</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Inicio semestre</td>
-              <td>
-                <span class="risk-dot low"></span> Bajo
-              </td>
-            </tr>
-            <tr>
-              <td>Semana 5</td>
-              <td>
-                <span class="risk-dot medium"></span> Medio
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Recomendación / Programar tutoría -->
-    <div class="tutoring-card">
-      <div class="tutoring-content">
-        <p class="tutoring-text">
-          “Se sugiere programar tutoría académica para reforzar
-          hábitos de estudio. De preferencia dentro de los próximos 7 días.”
-        </p>
-        <button class="btn-tutoring">Programar tutoría</button>
-      </div>
-
-      <!-- Aquí puedes poner tu búho/mascota -->
-      <div class="tutoring-image">
-        <!-- Ejemplo: <img src="logo-buho.png" alt="Tutor" /> -->
-        <span class="owl-icon">🦉</span>
-      </div>
-    </div>
-
-  </section>
-</div>
-
-
-
     </main>
   </div>
-   <!-- === Pop-up Acerca de SA-TA-DE === -->
-<div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
-  <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <button class="about-close" (click)="closeAbout()">✖</button>
+  <!-- === Pop-up Acerca de SA-TA-DE === -->
+  <div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
+    <div class="about-modal" (click)="$event.stopPropagation()">
 
-    <div class="about-image">
-      <img src="desercion.jpeg" alt="Acerca de SATADE">
+      <button class="about-close" (click)="closeAbout()">✖</button>
+
+      <div class="about-image">
+        <img src="desercion.jpeg" alt="Acerca de SATADE">
+      </div>
+
+      <div class="about-text">
+        <p>
+          <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
+          Deserción Escolar que utiliza el análisis de datos y modelos de
+          Inteligencia Artificial para identificar estudiantes con riesgo de
+          abandonar sus estudios.
+        </p>
+        <p>
+          La plataforma analiza información académica, socioeconómica y de
+          asistencia para generar alertas preventivas, permitiendo que tutores,
+          orientadores y coordinadores educativos intervengan a tiempo mediante
+          apoyo académico, psicológico o económico.
+        </p>
+        <p>
+          El objetivo principal es reducir la deserción escolar, mejorar la
+          continuidad educativa y fortalecer el bienestar estudiantil dentro de
+          las instituciones de nivel superior.
+        </p>
+      </div>
+
     </div>
-
-    <div class="about-text">
-      <p>
-        <strong>SATADE</strong> es un Sistema de Alerta Temprana contra la
-        Deserción Escolar que utiliza el análisis de datos y modelos de
-        Inteligencia Artificial para identificar estudiantes con riesgo de
-        abandonar sus estudios.
-      </p>
-      <p>
-        La plataforma analiza información académica, socioeconómica y de
-        asistencia para generar alertas preventivas, permitiendo que tutores,
-        orientadores y coordinadores educativos intervengan a tiempo mediante
-        apoyo académico, psicológico o económico.
-      </p>
-      <p>
-        El objetivo principal es reducir la deserción escolar, mejorar la
-        continuidad educativa y fortalecer el bienestar estudiantil dentro de
-        las instituciones de nivel superior.
-      </p>
-    </div>
-
   </div>
-</div>
 </div>

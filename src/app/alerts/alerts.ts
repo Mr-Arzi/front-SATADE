@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
-
 
 @Component({
   selector: 'app-alerts',
@@ -10,8 +9,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './alerts.css',
 })
 export class Alerts {
-      isMenuOpen = true;
-
+  isMenuOpen = true;
   showAbout = false;
 
   toggleMenu() {
@@ -26,19 +24,33 @@ export class Alerts {
     this.showAbout = false;
   }
 
+  // ====== POPUP INTERVENCIÓN ======
   showIntervention = false;
-  selectedStudent = '';
+  selectedStudent: string | null = null;
+  popoverX = 0;
+  popoverY = 0;
 
-  abrirIntervencion(nombre: string) {
+  abrirIntervencion(nombre: string, event: MouseEvent) {
+    event.stopPropagation(); // que no se propague al documento
     this.selectedStudent = nombre;
     this.showIntervention = true;
+
+    const rect = (event.target as HTMLElement).getBoundingClientRect();
+    this.popoverX = rect.left;
+    this.popoverY = rect.bottom + 8; // un poquito debajo del botón
   }
 
   cerrarIntervencion() {
     this.showIntervention = false;
-    this.selectedStudent = '';
+    this.selectedStudent = null;
   }
 
-
-
+  // Cierre automático al hacer clic fuera
+  @HostListener('document:click')
+  onDocumentClick() {
+    if (this.showIntervention) {
+      this.cerrarIntervencion();
+    }
+  }
 }
+
