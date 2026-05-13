@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -9,11 +9,37 @@ import { NgIf } from '@angular/common';
   styleUrl: './alerts.css',
 })
 export class Alerts {
+  constructor(private router: Router) {}
+
   isMenuOpen = true;
+  isUserMenuOpen = false;
+  isNotificationsOpen = false;
   showAbout = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleUserMenu() {
+    this.isUserMenuOpen = !this.isUserMenuOpen;
+    if (this.isUserMenuOpen) {
+      this.isNotificationsOpen = false;
+    }
+  }
+
+  closeUserMenu() {
+    this.isUserMenuOpen = false;
+  }
+
+  toggleNotifications() {
+    this.isNotificationsOpen = !this.isNotificationsOpen;
+    if (this.isNotificationsOpen) {
+      this.isUserMenuOpen = false;
+    }
+  }
+
+  closeNotifications() {
+    this.isNotificationsOpen = false;
   }
 
   openAbout() {
@@ -27,17 +53,10 @@ export class Alerts {
   // ====== POPUP INTERVENCIÓN ======
   showIntervention = false;
   selectedStudent: string | null = null;
-  popoverX = 0;
-  popoverY = 0;
 
-  abrirIntervencion(nombre: string, event: MouseEvent) {
-    event.stopPropagation(); // que no se propague al documento
+  abrirIntervencion(nombre: string) {
     this.selectedStudent = nombre;
     this.showIntervention = true;
-
-    const rect = (event.target as HTMLElement).getBoundingClientRect();
-    this.popoverX = rect.left;
-    this.popoverY = rect.bottom + 8; // un poquito debajo del botón
   }
 
   cerrarIntervencion() {
@@ -45,12 +64,11 @@ export class Alerts {
     this.selectedStudent = null;
   }
 
-  // Cierre automático al hacer clic fuera
-  @HostListener('document:click')
-  onDocumentClick() {
-    if (this.showIntervention) {
-      this.cerrarIntervencion();
+  goToHistory(studentName: string) {
+    if (studentName === 'Luis Rivera Martínez') {
+      this.router.navigate(['/registro-intervenciones']);
     }
   }
+
 }
 

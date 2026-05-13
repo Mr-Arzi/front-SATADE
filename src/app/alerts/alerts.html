@@ -3,64 +3,166 @@
   <!-- Barra superior -->
   <header class="topbar">
     <div class="topbar-left">
-      <img
-        class="logo-mini"
-        src="satadelogoblanco.png"
-        alt="Logo SATADE"
-      />
+      <button class="icon-button menu-toggle" (click)="toggleMenu()" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="2" rx="1"></rect>
+          <rect x="3" y="11" width="18" height="2" rx="1"></rect>
+          <rect x="3" y="17" width="18" height="2" rx="1"></rect>
+        </svg>
+      </button>
+    </div>
+
+    <div class="topbar-center">
+      <img class="logo-mini" src="satadelogoblanco.png" alt="Logo SATADE" />
       <span class="topbar-title">SATADE</span>
     </div>
 
     <div class="topbar-right">
-      <div class="user-avatar">
-        <span>👤</span>
+      <div class="notifications" [class.open]="isNotificationsOpen">
+        <button
+          class="icon-button bell-button"
+          (click)="toggleNotifications()"
+          aria-label="Notificaciones"
+          aria-haspopup="true"
+          [attr.aria-expanded]="isNotificationsOpen"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22a2.3 2.3 0 0 0 2.2-2H9.8A2.3 2.3 0 0 0 12 22Z"></path>
+            <path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"></path>
+          </svg>
+          <span class="notification-dot" aria-hidden="true"></span>
+        </button>
+
+        <div class="notifications-dropdown" *ngIf="isNotificationsOpen">
+          <div class="notifications-header">
+            <span>Notificaciones</span>
+            <span class="notifications-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22a2.3 2.3 0 0 0 2.2-2H9.8A2.3 2.3 0 0 0 12 22Z"></path>
+                <path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"></path>
+              </svg>
+            </span>
+          </div>
+
+          <div class="notification-card">
+            <span class="notification-symbol">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4"></path>
+                <circle cx="12" cy="16" r="1"></circle>
+              </svg>
+            </span>
+            <div class="notification-text">
+              Se ha agregado un nuevo movimiento de alerta temprana en el alumno Eduardo Juarez
+            </div>
+          </div>
+
+          <div class="notification-card">
+            <span class="notification-symbol">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4"></path>
+                <circle cx="12" cy="16" r="1"></circle>
+              </svg>
+            </span>
+            <div class="notification-text">
+              Se ha agregado un nuevo movimiento de seguimiento en la alumna Romina Lara
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="user-info">
-        <div class="user-name">Jesús Galván</div>
-        <div class="user-role">Administrador</div>
+
+      <div class="user-menu" [class.open]="isUserMenuOpen">
+        <button
+          class="user-trigger"
+          (click)="toggleUserMenu()"
+          aria-haspopup="true"
+          [attr.aria-expanded]="isUserMenuOpen"
+        >
+          <span class="user-avatar">JG</span>
+          <span class="user-meta">
+            <span class="user-name">Jesús Galván</span>
+            <span class="user-role">Administrador</span>
+          </span>
+          <span class="chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </span>
+        </button>
+
+        <div class="user-dropdown" *ngIf="isUserMenuOpen">
+          <div class="user-dropdown-header">
+            <div class="user-dropdown-name">Jesús Galván</div>
+            <div class="user-dropdown-role">Administrador</div>
+          </div>
+          <button class="user-dropdown-item" (click)="closeUserMenu()">
+            Cerrar sesión
+          </button>
+        </div>
       </div>
-      <div class="user-arrow">➤</div>
     </div>
   </header>
 
   <!-- Contenido general -->
   <div class="home-content">
+    <div class="sidebar-backdrop" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
 
-    <!-- Menú lateral desplegable -->
-    <button class="menu-toggle" (click)="toggleMenu()">
-      <span class="menu-icon">☰</span>
-    </button>
-
-    <aside class="sidebar" [class.collapsed]="!isMenuOpen">
+    <aside class="sidebar" [class.open]="isMenuOpen">
       <div class="sidebar-inner">
 
-        <button class="menu-item " routerLink="/home">
-          <span class="menu-icon-square">▦</span>
+        <button class="menu-item" routerLink="/home">
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 11h7V4H4v7Zm9 9h7v-7h-7v7ZM4 20h7v-7H4v7Zm9-9h7V4h-7v7Z"></path>
+            </svg>
+          </span>
           <span>Inicio</span>
         </button>
 
         <button class="menu-item" (click)="openAbout()">
-          <span class="menu-icon-circle">?</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 7a3 3 0 0 1 3 3c0 2-3 2-3 5"></path>
+              <circle cx="12" cy="18" r="1"></circle>
+              <circle cx="12" cy="12" r="9"></circle>
+            </svg>
+          </span>
           <span>Acerca de...</span>
         </button>
 
         <button class="menu-item" routerLink="/estudiantes">
-          <span class="menu-icon-circle">👥</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="8" r="3"></circle>
+              <circle cx="17" cy="10" r="2"></circle>
+              <path d="M3 19c0-3.3 2.7-6 6-6"></path>
+              <path d="M13 19c0-2.3 1.7-4 4-4"></path>
+            </svg>
+          </span>
           <span>Estudiantes</span>
         </button>
 
         <button class="menu-item active" routerLink="/alertas">
-          <span class="menu-icon-circle">!</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 7v6"></path>
+              <circle cx="12" cy="16" r="1"></circle>
+              <path d="M4 20h16l-8-15-8 15Z"></path>
+            </svg>
+          </span>
           <span>Alertas<br>Tempranas</span>
         </button>
 
-        <button class="menu-item" routerLink="/registro-intervenciones">
-          <span class="menu-icon-circle">📈</span>
-          <span>Seguimiento</span>
-        </button>
-
         <button class="menu-item" routerLink="/reportes">
-          <span class="menu-icon-circle">📄</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 4h7l4 4v12H7V4Z"></path>
+              <path d="M14 4v4h4"></path>
+              <path d="M9 13h6"></path>
+              <path d="M9 16h6"></path>
+            </svg>
+          </span>
           <span>Reportes</span>
         </button>
 
@@ -68,23 +170,62 @@
     </aside>
 
     <!-- Panel principal -->
-    <main class="dashboard">
+    <main class="dashboard" (click)="closeUserMenu(); closeNotifications()">
       <div class="alerts-page">
-        <h1 class="page-title">Alertas Activas</h1>
+        <div class="page-header">
+          <div class="page-spacer"></div>
+          <h1 class="page-title">Alertas Tempranas</h1>
+          <button
+            class="btn-assign-primary"
+            type="button"
+            (click)="abrirIntervencion('Seleccionar estudiante')"
+          >
+            <span class="btn-icon">+</span>
+            Asignar intervención
+          </button>
+        </div>
 
         <!-- Card principal -->
         <section class="alerts-card">
+          <div class="filters-bar">
+            <div class="filters-left">
+              <div class="filter-group">
+                <label class="filter-label">Carrera</label>
+                <div class="select-wrap">
+                  <select class="filter-select">
+                    <option selected>Ingeniería eléctrica</option>
+                    <option>Ingeniería industrial</option>
+                    <option>Ingeniería en sistemas</option>
+                  </select>
+                  <span class="select-chevron"></span>
+                </div>
+              </div>
 
-          <!-- Buscador -->
-          <div class="alerts-header">
-            <div class="search-box">
-              <input
-                type="text"
-                class="search-input"
-                placeholder="Buscar por nombre"
-              />
-              <span class="search-icon">🔍</span>
-              <button class="refresh-btn" type="button">⟳</button>
+              <div class="filter-group">
+                <label class="filter-label">Grupo</label>
+                <div class="select-wrap">
+                  <select class="filter-select">
+                    <option selected>101</option>
+                    <option>102</option>
+                    <option>103</option>
+                  </select>
+                  <span class="select-chevron"></span>
+                </div>
+              </div>
+
+              <button class="search-btn" type="button" aria-label="Buscar">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="M20 20l-3.5-3.5"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="risk-level">
+              <span class="risk-label">Nivel de Riesgo:</span>
+              <span class="risk-pill low">Bajo</span>
+              <span class="risk-pill medium">Medio</span>
+              <span class="risk-pill high">Alto</span>
             </div>
           </div>
 
@@ -93,106 +234,132 @@
             <table class="alerts-table">
               <thead>
                 <tr>
-                  <th>Estudiante</th>
+                  <th>Nombre</th>
                   <th>Motivo</th>
-                  <th>Nivel</th>
-                  <th>Acción</th>
+                  <th class="level-col">Nivel</th>
                 </tr>
               </thead>
 
               <tbody>
-                <!-- Fila 1 -->
                 <tr>
-                  <td>María Elena Fernandez Cortés</td>
-                  <td>Ausencias recurrentes</td>
-                  <td><span class="risk-dot high"></span></td>
-
-                  <td class="actions-cell">
-                    <button
-                      class="btn-assign"
-                      type="button"
-                      (click)="abrirIntervencion('María Elena Fernandez Cortés', $event)"
+                  <td class="name-cell">
+                    <span class="avatar-dot">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3"></circle>
+                        <path d="M6 19c0-3.3 2.7-6 6-6s6 2.7 6 6"></path>
+                      </svg>
+                    </span>
+                    <span
+                      class="clickable-name"
+                      (click)="goToHistory('Luis Rivera Martínez')"
                     >
-                      Asignar intervención
-                    </button>
+                      Luis Rivera Martínez
+                    </span>
                   </td>
+                  <td>zlbjcabjvlabjlvba</td>
+                  <td class="level-cell"><span class="risk-dot neutral"></span></td>
                 </tr>
 
-                <!-- Fila 2 -->
+                <tr>
+                  <td>Tamara Torres Trujillo</td>
+                  <td>vjjldbljabdvl</td>
+                  <td class="level-cell"><span class="risk-dot medium"></span></td>
+                </tr>
+
+                <tr>
+                  <td>Juan Pérez Domínguez</td>
+                  <td>jlbvabjldvbljabdvl</td>
+                  <td class="level-cell"><span class="risk-dot high"></span></td>
+                </tr>
+
+                <tr>
+                  <td>Valeria Ramírez Salinas</td>
+                  <td>jabvjovbajolvbja</td>
+                  <td class="level-cell"><span class="risk-dot low"></span></td>
+                </tr>
+
                 <tr>
                   <td>Marco Jiménez Cabrera</td>
-                  <td>Baja calificación</td>
-                  <td><span class="risk-dot high"></span></td>
-
-                  <td class="actions-cell">
-                    <button
-                      class="btn-assign"
-                      type="button"
-                      (click)="abrirIntervencion('Marco Jiménez Cabrera', $event)"
-                    >
-                      Asignar intervención
-                    </button>
-                  </td>
+                  <td>alvbjlavdjla</td>
+                  <td class="level-cell"><span class="risk-dot neutral"></span></td>
                 </tr>
               </tbody>
-
             </table>
           </div>
 
+          <div class="table-footer">
+            <span class="results-text">Mostrando 1 - 12 de 12 resultados</span>
+            <div class="pagination">
+              <button class="page-btn" aria-label="Anterior">‹</button>
+              <button class="page-number active">1</button>
+              <button class="page-number">2</button>
+              <button class="page-number">3</button>
+              <span class="page-ellipsis">…</span>
+              <button class="page-btn" aria-label="Siguiente">›</button>
+            </div>
+          </div>
         </section>
       </div>
 
       <!-- === POPOVER GLOBAL DE INTERVENCIÓN (FLOTANTE) === -->
       <div
-        class="intervention-popover-global"
+        class="intervention-backdrop"
         *ngIf="showIntervention"
-        [style.top.px]="popoverY"
-        [style.left.px]="popoverX"
-        (click)="$event.stopPropagation()"
+        (click)="cerrarIntervencion()"
       >
-        <div class="intervention-header">
-          <h2>Asignar intervención</h2>
-          <span class="student-tag">{{ selectedStudent }}</span>
-        </div>
-
-        <div class="form-group">
-          <label>Tipo de intervención:</label>
-          <select class="select-field">
-            <option selected disabled>Seleccionar</option>
-            <option>Tutoría académica</option>
-            <option>Sesión con psicología</option>
-            <option>Apoyo económico</option>
-            <option>Comunicación con tutores</option>
-            <option>Canalización a trabajo social</option>
-            <option>Taller de hábitos de estudio</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Responsable:</label>
-          <select class="select-field">
-            <option selected disabled>Seleccionar</option>
-            <option>Dylan Tellez Silva - Tutor</option>
-            <option>Ana Perez Ferrer - Psicólogo</option>
-            <option>Rogelio Luna - Coordinador</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>Definir fecha:</label>
-          <div class="date-wrapper">
-            <input type="date" class="select-field" />
-            <span class="calendar-icon">📅</span>
+        <div class="intervention-modal" (click)="$event.stopPropagation()">
+          <div class="intervention-header">
+            <h2>Asignar intervención</h2>
+            <span class="student-tag">{{ selectedStudent }}</span>
           </div>
-        </div>
 
-        <div class="form-actions">
-          <button type="button" class="btn-save" (click)="cerrarIntervencion()">
-            ⬇ Guardar
-          </button>
-          <button type="button" class="btn-cancel" (click)="cerrarIntervencion()">
-            ✖ Cancelar
-          </button>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Tipo de intervención:</label>
+              <div class="select-wrap">
+                <select class="select-field">
+                  <option selected disabled>Seleccionar</option>
+                  <option>Tutoría académica</option>
+                  <option>Sesión con psicología</option>
+                  <option>Apoyo económico</option>
+                  <option>Comunicación con tutores</option>
+                  <option>Canalización a trabajo social</option>
+                  <option>Taller de hábitos de estudio</option>
+                </select>
+                <span class="select-chevron"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Definir fecha:</label>
+              <div class="select-wrap">
+                <input type="date" class="select-field" />
+                <span class="calendar-icon">📅</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Responsable:</label>
+              <div class="select-wrap">
+                <select class="select-field">
+                  <option selected disabled>Seleccionar</option>
+                  <option>Dylan Tellez Silva - Tutor</option>
+                  <option>Ana Perez Ferrer - Psicólogo</option>
+                  <option>Rogelio Luna - Coordinador</option>
+                </select>
+                <span class="select-chevron"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-save" (click)="cerrarIntervencion()">
+              <span class="btn-action-icon">⬇</span> Guardar
+            </button>
+            <button type="button" class="btn-cancel" (click)="cerrarIntervencion()">
+              <span class="btn-action-icon">✖</span> Cancelar
+            </button>
+          </div>
         </div>
       </div>
       <!-- === FIN POPOVER GLOBAL === -->
