@@ -3,65 +3,167 @@
   <!-- Barra superior -->
   <header class="topbar">
     <div class="topbar-left">
-      <img
-        class="logo-mini"
-        src="satadelogoblanco.png"
-        alt="Logo SATADE"
-      />
+      <button class="icon-button menu-toggle" (click)="toggleMenu()" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="2" rx="1"></rect>
+          <rect x="3" y="11" width="18" height="2" rx="1"></rect>
+          <rect x="3" y="17" width="18" height="2" rx="1"></rect>
+        </svg>
+      </button>
+    </div>
+
+    <div class="topbar-center">
+      <img class="logo-mini" src="satadelogoblanco.png" alt="Logo SATADE" />
       <span class="topbar-title">SATADE</span>
     </div>
 
     <div class="topbar-right">
-      <div class="user-avatar">
-        <span>👤</span>
+      <div class="notifications" [class.open]="isNotificationsOpen">
+        <button
+          class="icon-button bell-button"
+          (click)="toggleNotifications()"
+          aria-label="Notificaciones"
+          aria-haspopup="true"
+          [attr.aria-expanded]="isNotificationsOpen"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22a2.3 2.3 0 0 0 2.2-2H9.8A2.3 2.3 0 0 0 12 22Z"></path>
+            <path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"></path>
+          </svg>
+          <span class="notification-dot" aria-hidden="true"></span>
+        </button>
+
+        <div class="notifications-dropdown" *ngIf="isNotificationsOpen">
+          <div class="notifications-header">
+            <span>Notificaciones</span>
+            <span class="notifications-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22a2.3 2.3 0 0 0 2.2-2H9.8A2.3 2.3 0 0 0 12 22Z"></path>
+                <path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"></path>
+              </svg>
+            </span>
+          </div>
+
+          <div class="notification-card">
+            <span class="notification-symbol">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4"></path>
+                <circle cx="12" cy="16" r="1"></circle>
+              </svg>
+            </span>
+            <div class="notification-text">
+              Se ha agregado un nuevo movimiento de alerta temprana en el alumno Eduardo Juarez
+            </div>
+          </div>
+
+          <div class="notification-card">
+            <span class="notification-symbol">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 8v4"></path>
+                <circle cx="12" cy="16" r="1"></circle>
+              </svg>
+            </span>
+            <div class="notification-text">
+              Se ha agregado un nuevo movimiento de seguimiento en la alumna Romina Lara
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="user-info">
-        <div class="user-name">Jesús Galván</div>
-        <div class="user-role">Administrador</div>
+
+      <div class="user-menu" [class.open]="isUserMenuOpen">
+        <button
+          class="user-trigger"
+          (click)="toggleUserMenu()"
+          aria-haspopup="true"
+          [attr.aria-expanded]="isUserMenuOpen"
+        >
+          <span class="user-avatar">JG</span>
+          <span class="user-meta">
+            <span class="user-name">Jesús Galván</span>
+            <span class="user-role">Administrador</span>
+          </span>
+          <span class="chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </span>
+        </button>
+
+        <div class="user-dropdown" *ngIf="isUserMenuOpen">
+          <div class="user-dropdown-header">
+            <div class="user-dropdown-name">Jesús Galván</div>
+            <div class="user-dropdown-role">Administrador</div>
+          </div>
+          <button class="user-dropdown-item" (click)="closeUserMenu()">
+            Cerrar sesión
+          </button>
+        </div>
       </div>
-      <div class="user-arrow">➤</div>
     </div>
   </header>
 
   <!-- Contenido general -->
   <div class="home-content">
+    <div class="sidebar-backdrop" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
 
-    <!-- Menú lateral desplegable -->
-    <button class="menu-toggle" (click)="toggleMenu()">
-      <span class="menu-icon">☰</span>
-    </button>
-
-    <aside class="sidebar" [class.collapsed]="!isMenuOpen">
+    <aside class="sidebar" [class.open]="isMenuOpen">
 
       <div class="sidebar-inner">
 
         <button class="menu-item" routerLink="/home">
-          <span class="menu-icon-square">▦</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 11h7V4H4v7Zm9 9h7v-7h-7v7ZM4 20h7v-7H4v7Zm9-9h7V4h-7v7Z"></path>
+            </svg>
+          </span>
           <span>Inicio</span>
         </button>
 
         <button class="menu-item" (click)="openAbout()">
-          <span class="menu-icon-circle">?</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 7a3 3 0 0 1 3 3c0 2-3 2-3 5"></path>
+              <circle cx="12" cy="18" r="1"></circle>
+              <circle cx="12" cy="12" r="9"></circle>
+            </svg>
+          </span>
           <span>Acerca de...</span>
         </button>
 
         <button class="menu-item active" routerLink="/estudiantes">
-          <span class="menu-icon-circle">👥</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="9" cy="8" r="3"></circle>
+              <circle cx="17" cy="10" r="2"></circle>
+              <path d="M3 19c0-3.3 2.7-6 6-6"></path>
+              <path d="M13 19c0-2.3 1.7-4 4-4"></path>
+            </svg>
+          </span>
           <span>Estudiantes</span>
         </button>
 
         <button class="menu-item" routerLink="/alertas">
-          <span class="menu-icon-circle">!</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 7v6"></path>
+              <circle cx="12" cy="16" r="1"></circle>
+              <path d="M4 20h16l-8-15-8 15Z"></path>
+            </svg>
+          </span>
           <span>Alertas<br>Tempranas</span>
         </button>
 
-        <button class="menu-item" routerLink="/registro-intervenciones">
-          <span class="menu-icon-circle">📈</span>
-          <span>Seguimiento</span>
-        </button>
-
         <button class="menu-item" routerLink="/reportes">
-          <span class="menu-icon-circle">📄</span>
+          <span class="menu-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 4h7l4 4v12H7V4Z"></path>
+              <path d="M14 4v4h4"></path>
+              <path d="M9 13h6"></path>
+              <path d="M9 16h6"></path>
+            </svg>
+          </span>
           <span>Reportes</span>
         </button>
 
@@ -69,83 +171,134 @@
     </aside>
 
     <!-- Panel principal -->
-    <main class="dashboard">
+    <main class="dashboard" (click)="closeUserMenu(); closeNotifications()">
       <div class="student-register-page">
-        <h1 class="sr-title">Registro de Estudiante</h1>
+        <h1 class="page-title">Registro de Estudiante</h1>
 
-        <section class="sr-card">
-          <!-- Fila buscador -->
-          <div class="sr-top-row">
-            <div class="sr-search-box">
-              <input
-                type="text"
-                class="sr-search-input"
-                placeholder="Buscar por nombre"
-              />
-              <span class="sr-search-icon">🔍</span>
-              <button class="sr-refresh-btn" type="button">⟳</button>
+        <section class="register-card">
+          <div class="register-grid">
+            <div class="photo-panel">
+              <div class="section-header">
+                <h2 class="section-title">Foto del Alumno</h2>
+              </div>
+              <div class="photo-box">
+                <div class="photo-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="10" r="4"></circle>
+                    <path d="M4 20c0-4 3-6 7-6"></path>
+                    <path d="M18 8v4"></path>
+                    <path d="M16 10h4"></path>
+                  </svg>
+                </div>
+              </div>
+              <span class="photo-caption">Subir Foto</span>
+            </div>
+
+            <div class="form-panel">
+              <div class="section-header">
+                <h2 class="section-title">Datos Personales</h2>
+              </div>
+              <div class="field-group">
+                <label class="field-label">Nombre Completo</label>
+                <div class="field-control has-caret">
+                  <input class="field-input" type="text" placeholder="Nombre Completo" />
+                  <span class="input-caret">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Matricula</label>
+                <div class="field-control has-caret">
+                  <input class="field-input" type="text" placeholder="Matricula" />
+                  <span class="input-caret">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-panel">
+              <div class="section-header">
+                <h2 class="section-title">Datos Academicos</h2>
+              </div>
+              <div class="field-group">
+                <label class="field-label">Carrera</label>
+                <div class="field-control has-caret">
+                  <select class="field-input">
+                    <option value="">Carrera</option>
+                    <option>Ingeniería eléctrica</option>
+                    <option>Ingeniería de software</option>
+                    <option>Ingeniería Química</option>
+                  </select>
+                  <span class="input-caret">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Grupo</label>
+                <div class="field-control has-caret">
+                  <select class="field-input">
+                    <option value="">Grupo</option>
+                    <option>101</option>
+                    <option>102</option>
+                    <option>201</option>
+                  </select>
+                  <span class="input-caret">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Tutor</label>
+                <div class="field-control has-caret">
+                  <select class="field-input">
+                    <option value="">Tutor</option>
+                    <option>Rosa Martinez</option>
+                    <option>Victor Salinas</option>
+                    <option>Andrea Cruz</option>
+                  </select>
+                  <span class="input-caret">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m6 9 6 6 6-6"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <hr class="sr-divider" />
-
-          <!-- Cuerpo principal -->
-          <div class="sr-body">
-            <!-- Avatar -->
-            <div class="sr-avatar-area">
-              <div class="sr-avatar-circle">
-                <!-- Puedes reemplazar por una imagen -->
-                <span class="sr-avatar-icon">👤+</span>
-              </div>
-            </div>
-
-            <!-- Formulario -->
-            <div class="sr-form-area">
-              <div class="sr-form-row">
-                <label>Nombre del alumno:</label>
-                <input type="text" class="sr-input long" />
-              </div>
-
-              <div class="sr-form-row">
-                <label>Semestre:</label>
-                <input type="number" class="sr-input short" min="1" max="12" />
-              </div>
-
-              <div class="sr-form-row">
-                <label>Matrícula:</label>
-                <input type="text" class="sr-input medium" />
-              </div>
-
-              <div class="sr-form-row">
-                <label>Carrera:</label>
-                <select class="sr-input medium">
-                  <option value="">Seleccionar</option>
-                  <option>Medicina</option>
-                  <option>Ingeniería de software</option>
-                  <option>Ingeniería eléctrica</option>
-                  <option>Ingeniería química</option>
-                </select>
-              </div>
-
-              <div class="sr-form-row">
-                <label>Tutor:</label>
-                <select class="sr-input medium">
-                  <option value="">Seleccionar</option>
-                  <option>Dylan Tellez</option>
-                  <option>Ana Pérez</option>
-                  <option>Rogelio Luna</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <!-- Botones -->
-          <div class="sr-actions">
-            <button class="sr-btn sr-btn-save" type="button">
-              ⬇ Guardar
+          <div class="form-actions">
+            <button class="action-btn save-btn" type="button">
+              <span class="action-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 20h14a1 1 0 0 0 1-1V8l-4-4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1Z"></path>
+                  <path d="M12 12v6"></path>
+                  <path d="m9 15 3 3 3-3"></path>
+                </svg>
+              </span>
+              Guardar
             </button>
-            <button class="sr-btn sr-btn-cancel" type="button">
-              ✖ Cancelar
+            <button class="action-btn cancel-btn" type="button">
+              <span class="action-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 6l12 12"></path>
+                  <path d="M18 6 6 18"></path>
+                </svg>
+              </span>
+              Cancelar
             </button>
           </div>
         </section>
