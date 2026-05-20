@@ -12,7 +12,10 @@ const USER_KEY = 'satade_usuario';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly router: Router
+  ) {}
 
   login(correo: string, contrasena: string): Observable<LoginResponse> {
     return this.http

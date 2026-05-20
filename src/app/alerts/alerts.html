@@ -106,7 +106,14 @@
 
   <!-- Contenido general -->
   <div class="home-content">
-    <div class="sidebar-backdrop" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
+    <div
+      class="sidebar-backdrop"
+      *ngIf="isMenuOpen"
+      (click)="toggleMenu()"
+      (keydown.enter)="toggleMenu()"
+      (keydown.space)="toggleMenu()"
+      aria-label="Cerrar menu"
+    ></div>
 
     <aside class="sidebar" [class.open]="isMenuOpen">
       <div class="sidebar-inner">
@@ -170,7 +177,12 @@
     </aside>
 
     <!-- Panel principal -->
-    <main class="dashboard" (click)="closeUserMenu(); closeNotifications()">
+    <main
+      class="dashboard"
+      (click)="closeUserMenu(); closeNotifications()"
+      (keydown.enter)="closeUserMenu(); closeNotifications()"
+      (keydown.space)="closeUserMenu(); closeNotifications()"
+    >
       <div class="alerts-page">
         <div class="page-header">
           <div class="page-spacer"></div>
@@ -190,9 +202,9 @@
           <div class="filters-bar">
             <div class="filters-left">
               <div class="filter-group">
-                <label class="filter-label">Carrera</label>
+                <label class="filter-label" for="filterCarrera">Carrera</label>
                 <div class="select-wrap">
-                  <select class="filter-select">
+                  <select class="filter-select" id="filterCarrera">
                     <option selected>Ingeniería eléctrica</option>
                     <option>Ingeniería industrial</option>
                     <option>Ingeniería en sistemas</option>
@@ -202,9 +214,9 @@
               </div>
 
               <div class="filter-group">
-                <label class="filter-label">Grupo</label>
+                <label class="filter-label" for="filterGrupo">Grupo</label>
                 <div class="select-wrap">
-                  <select class="filter-select">
+                  <select class="filter-select" id="filterGrupo">
                     <option selected>101</option>
                     <option>102</option>
                     <option>103</option>
@@ -250,12 +262,13 @@
                         <path d="M6 19c0-3.3 2.7-6 6-6s6 2.7 6 6"></path>
                       </svg>
                     </span>
-                    <span
+                    <button
                       class="clickable-name"
-                      (click)="goToHistory(alerta.nombreEstudiante)"
+                      type="button"
+                      (click)="goToHistory(alerta)"
                     >
                       {{ alerta.nombreEstudiante }}
-                    </span>
+                    </button>
                   </td>
                   <td>{{ alerta.motivo }}</td>
                   <td class="level-cell">
@@ -285,8 +298,16 @@
         class="intervention-backdrop"
         *ngIf="showIntervention"
         (click)="cerrarIntervencion()"
+        (keydown.enter)="cerrarIntervencion()"
+        (keydown.space)="cerrarIntervencion()"
+        aria-label="Cerrar modal de intervencion"
       >
-        <div class="intervention-modal" (click)="$event.stopPropagation()">
+        <div
+          class="intervention-modal"
+          (click)="$event.stopPropagation()"
+          (keydown.enter)="$event.stopPropagation()"
+          (keydown.space)="$event.stopPropagation()"
+        >
           <div class="intervention-header">
             <h2>Asignar intervención</h2>
             <span class="student-tag">{{ selectedStudent }}</span>
@@ -294,9 +315,14 @@
 
           <div class="form-grid">
             <div class="form-group">
-              <label>Tipo de intervención:</label>
+              <label for="tipoIntervencion">Tipo de intervención:</label>
               <div class="select-wrap">
-                <select class="select-field" [(ngModel)]="tipoIntervencion" name="tipoIntervencion">
+                <select
+                  class="select-field"
+                  [(ngModel)]="tipoIntervencion"
+                  name="tipoIntervencion"
+                  id="tipoIntervencion"
+                >
                   <option value="" disabled>Seleccionar</option>
                   <option>Tutoría académica</option>
                   <option>Sesión con psicología</option>
@@ -310,17 +336,28 @@
             </div>
 
             <div class="form-group">
-              <label>Definir fecha:</label>
+              <label for="fechaIntervencion">Definir fecha:</label>
               <div class="select-wrap">
-                <input type="date" class="select-field" [(ngModel)]="fechaIntervencion" name="fechaIntervencion" />
+                <input
+                  type="date"
+                  class="select-field"
+                  [(ngModel)]="fechaIntervencion"
+                  name="fechaIntervencion"
+                  id="fechaIntervencion"
+                />
                 <span class="calendar-icon">📅</span>
               </div>
             </div>
 
             <div class="form-group">
-              <label>Responsable:</label>
+              <label for="responsableIntervencion">Responsable:</label>
               <div class="select-wrap">
-                <select class="select-field" [(ngModel)]="responsableIntervencion" name="responsableIntervencion">
+                <select
+                  class="select-field"
+                  [(ngModel)]="responsableIntervencion"
+                  name="responsableIntervencion"
+                  id="responsableIntervencion"
+                >
                   <option value="" disabled>Seleccionar</option>
                   <option>Dylan Tellez Silva - Tutor</option>
                   <option>Ana Perez Ferrer - Psicólogo</option>
@@ -349,8 +386,20 @@
   </div>
 
   <!-- === Pop-up Acerca de SA-TA-DE === -->
-  <div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
-    <div class="about-modal" (click)="$event.stopPropagation()">
+  <div
+    class="about-backdrop"
+    *ngIf="showAbout"
+    (click)="closeAbout()"
+    (keydown.enter)="closeAbout()"
+    (keydown.space)="closeAbout()"
+    aria-label="Cerrar informacion de SATADE"
+  >
+    <div
+      class="about-modal"
+      (click)="$event.stopPropagation()"
+      (keydown.enter)="$event.stopPropagation()"
+      (keydown.space)="$event.stopPropagation()"
+    >
       <button class="about-close" (click)="closeAbout()">✖</button>
 
       <div class="about-image">

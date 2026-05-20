@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from "@angular/router";
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { AlertaService } from '../services/alerta.service';
 import { Intervencion } from '../models';
 
 @Component({
   selector: 'app-registro-intervenciones',
-  imports: [RouterLink, NgFor, NgIf],
+  imports: [RouterLink, CommonModule],
   templateUrl: './registro-intervenciones.html',
   styleUrl: './registro-intervenciones.css',
 })
@@ -21,7 +21,10 @@ export class RegistroIntervenciones implements OnInit {
 
   showAbout = false;
 
-  constructor(private route: ActivatedRoute, private alertaService: AlertaService) {}
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly alertaService: AlertaService
+  ) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

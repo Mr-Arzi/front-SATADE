@@ -10,7 +10,10 @@ const API_BASE = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class AlertaService {
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly auth: AuthService
+  ) {}
 
   getAlertas(filtros?: { carrera?: string; grupo?: string; nivel?: string }): Observable<Alerta[]> {
     let params = new HttpParams();

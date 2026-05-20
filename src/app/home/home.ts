@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from "@angular/router";
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { AlertaService } from '../services/alerta.service';
 import { DashboardStats } from '../models';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, NgFor, NgIf],
+  imports: [RouterLink, CommonModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -20,7 +20,7 @@ export class Home implements OnInit {
 
   showAbout = false;
 
-  constructor(private alertaService: AlertaService) {}
+  constructor(private readonly alertaService: AlertaService) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

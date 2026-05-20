@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { EstudianteService } from '../services/estudiante.service';
 import { Estudiante } from '../models';
 
 @Component({
   selector: 'app-student',
-  imports: [RouterLink, NgFor, NgIf],
+  imports: [RouterLink, CommonModule],
   templateUrl: './student.html',
   styleUrl: './student.css',
 })
@@ -15,7 +15,10 @@ export class Student implements OnInit {
   estudiantes: Estudiante[] = [];
   cargando = true;
 
-  constructor(private router: Router, private estudianteService: EstudianteService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly estudianteService: EstudianteService
+  ) {}
 
   isMenuOpen = true;
   isUserMenuOpen = false;

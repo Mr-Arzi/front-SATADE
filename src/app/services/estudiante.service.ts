@@ -10,7 +10,10 @@ const API_BASE = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class EstudianteService {
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly auth: AuthService
+  ) {}
 
   getEstudiantes(): Observable<Estudiante[]> {
     return this.http

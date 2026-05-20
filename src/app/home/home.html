@@ -106,7 +106,14 @@
 
   <!-- Contenido general -->
   <div class="home-content">
-    <div class="sidebar-backdrop" *ngIf="isMenuOpen" (click)="toggleMenu()"></div>
+    <div
+      class="sidebar-backdrop"
+      *ngIf="isMenuOpen"
+      (click)="toggleMenu()"
+      (keydown.enter)="toggleMenu()"
+      (keydown.space)="toggleMenu()"
+      aria-label="Cerrar menu"
+    ></div>
 
     <aside class="sidebar" [class.open]="isMenuOpen">
 
@@ -173,7 +180,12 @@
 
 
     <!-- Panel principal -->
-    <main class="dashboard" (click)="closeUserMenu(); closeNotifications()">
+    <main
+      class="dashboard"
+      (click)="closeUserMenu(); closeNotifications()"
+      (keydown.enter)="closeUserMenu(); closeNotifications()"
+      (keydown.space)="closeUserMenu(); closeNotifications()"
+    >
 
       <!-- Fila superior -->
       <section class="row row-top">
@@ -275,8 +287,20 @@
     </main>
   </div>
   <!-- === Pop-up Acerca de SA-TA-DE === -->
-  <div class="about-backdrop" *ngIf="showAbout" (click)="closeAbout()">
-    <div class="about-modal" (click)="$event.stopPropagation()">
+  <div
+    class="about-backdrop"
+    *ngIf="showAbout"
+    (click)="closeAbout()"
+    (keydown.enter)="closeAbout()"
+    (keydown.space)="closeAbout()"
+    aria-label="Cerrar informacion de SATADE"
+  >
+    <div
+      class="about-modal"
+      (click)="$event.stopPropagation()"
+      (keydown.enter)="$event.stopPropagation()"
+      (keydown.space)="$event.stopPropagation()"
+    >
 
       <button class="about-close" (click)="closeAbout()">✖</button>
 

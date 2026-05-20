@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AlertaService } from '../services/alerta.service';
@@ -8,12 +8,15 @@ import { Alerta } from '../models';
 
 @Component({
   selector: 'app-alerts',
-  imports: [RouterLink, NgClass, NgFor, NgIf, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './alerts.html',
   styleUrl: './alerts.css',
 })
 export class Alerts implements OnInit {
-  constructor(private router: Router, private alertaService: AlertaService) {}
+  constructor(
+    private readonly router: Router,
+    private readonly alertaService: AlertaService
+  ) {}
 
   alertas: Alerta[] = [];
   cargando = true;
@@ -130,12 +133,14 @@ export class Alerts implements OnInit {
       });
   }
 
-  goToHistory(studentName: string) {
-    if (studentName === 'Luis Rivera Martínez') {
-      this.router.navigate(['/registro-intervenciones'], {
-        queryParams: { estudianteId: 1 },
-      });
+  goToHistory(alerta: Alerta) {
+    if (!alerta?.estudianteId) {
+      return;
     }
+
+    this.router.navigate(['/registro-intervenciones'], {
+      queryParams: { estudianteId: alerta.estudianteId },
+    });
   }
 
 }
