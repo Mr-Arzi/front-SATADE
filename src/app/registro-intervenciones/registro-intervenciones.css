@@ -472,6 +472,12 @@
   overflow-x: auto;
 }
 
+.table-loading {
+  padding: 16px 0;
+  font-weight: 600;
+  color: #4a5568;
+}
+
 .registro-table {
   width: 100%;
   border-collapse: collapse;

@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import { RouterLink } from "@angular/router";
-import { NgIf } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from "@angular/router";
+import { NgFor, NgIf } from '@angular/common';
+
+import { EstudianteService } from '../services/estudiante.service';
+import { Estudiante } from '../models';
 
 @Component({
   selector: 'app-student',
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgFor, NgIf],
   templateUrl: './student.html',
   styleUrl: './student.css',
 })
-export class Student {
+export class Student implements OnInit {
+  estudiantes: Estudiante[] = [];
+  cargando = true;
+
+  constructor(private router: Router, private estudianteService: EstudianteService) {}
+
   isMenuOpen = true;
   isUserMenuOpen = false;
   isNotificationsOpen = false;
@@ -56,5 +64,23 @@ export class Student {
 
   closeAbout() {
     this.showAbout = false;
+  }
+
+  ngOnInit(): void {
+    this.estudianteService.getEstudiantes().subscribe({
+      next: (data) => {
+        this.estudiantes = data;
+        this.cargando = false;
+      },
+      error: () => {
+        this.cargando = false;
+      },
+    });
+  }
+
+  goToProfile(studentName: string) {
+    if (studentName === 'Tamara Torres Trujillo') {
+      this.router.navigate(['/perfil-estudiante']);
+    }
   }
 }

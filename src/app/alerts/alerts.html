@@ -231,7 +231,8 @@
 
           <!-- Tabla de alertas -->
           <div class="alerts-table-wrapper">
-            <table class="alerts-table">
+            <div class="table-loading" *ngIf="cargando">Cargando...</div>
+            <table class="alerts-table" *ngIf="!cargando">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -241,7 +242,7 @@
               </thead>
 
               <tbody>
-                <tr>
+                <tr *ngFor="let alerta of alertas">
                   <td class="name-cell">
                     <span class="avatar-dot">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -251,37 +252,15 @@
                     </span>
                     <span
                       class="clickable-name"
-                      (click)="goToHistory('Luis Rivera Martínez')"
+                      (click)="goToHistory(alerta.nombreEstudiante)"
                     >
-                      Luis Rivera Martínez
+                      {{ alerta.nombreEstudiante }}
                     </span>
                   </td>
-                  <td>zlbjcabjvlabjlvba</td>
-                  <td class="level-cell"><span class="risk-dot neutral"></span></td>
-                </tr>
-
-                <tr>
-                  <td>Tamara Torres Trujillo</td>
-                  <td>vjjldbljabdvl</td>
-                  <td class="level-cell"><span class="risk-dot medium"></span></td>
-                </tr>
-
-                <tr>
-                  <td>Juan Pérez Domínguez</td>
-                  <td>jlbvabjldvbljabdvl</td>
-                  <td class="level-cell"><span class="risk-dot high"></span></td>
-                </tr>
-
-                <tr>
-                  <td>Valeria Ramírez Salinas</td>
-                  <td>jabvjovbajolvbja</td>
-                  <td class="level-cell"><span class="risk-dot low"></span></td>
-                </tr>
-
-                <tr>
-                  <td>Marco Jiménez Cabrera</td>
-                  <td>alvbjlavdjla</td>
-                  <td class="level-cell"><span class="risk-dot neutral"></span></td>
+                  <td>{{ alerta.motivo }}</td>
+                  <td class="level-cell">
+                    <span class="risk-dot" [ngClass]="alerta.nivel"></span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -317,8 +296,8 @@
             <div class="form-group">
               <label>Tipo de intervención:</label>
               <div class="select-wrap">
-                <select class="select-field">
-                  <option selected disabled>Seleccionar</option>
+                <select class="select-field" [(ngModel)]="tipoIntervencion" name="tipoIntervencion">
+                  <option value="" disabled>Seleccionar</option>
                   <option>Tutoría académica</option>
                   <option>Sesión con psicología</option>
                   <option>Apoyo económico</option>
@@ -333,7 +312,7 @@
             <div class="form-group">
               <label>Definir fecha:</label>
               <div class="select-wrap">
-                <input type="date" class="select-field" />
+                <input type="date" class="select-field" [(ngModel)]="fechaIntervencion" name="fechaIntervencion" />
                 <span class="calendar-icon">📅</span>
               </div>
             </div>
@@ -341,8 +320,8 @@
             <div class="form-group">
               <label>Responsable:</label>
               <div class="select-wrap">
-                <select class="select-field">
-                  <option selected disabled>Seleccionar</option>
+                <select class="select-field" [(ngModel)]="responsableIntervencion" name="responsableIntervencion">
+                  <option value="" disabled>Seleccionar</option>
                   <option>Dylan Tellez Silva - Tutor</option>
                   <option>Ana Perez Ferrer - Psicólogo</option>
                   <option>Rogelio Luna - Coordinador</option>
@@ -352,8 +331,10 @@
             </div>
           </div>
 
+          <p class="form-error" *ngIf="errorIntervencion">{{ errorIntervencion }}</p>
+
           <div class="form-actions">
-            <button type="button" class="btn-save" (click)="cerrarIntervencion()">
+            <button type="button" class="btn-save" (click)="guardarIntervencion()" [disabled]="guardandoIntervencion">
               <span class="btn-action-icon">⬇</span> Guardar
             </button>
             <button type="button" class="btn-cancel" (click)="cerrarIntervencion()">

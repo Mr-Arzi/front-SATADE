@@ -176,175 +176,91 @@
 
         <h1 class="page-title">Perfil de Estudiante</h1>
 
-        <!-- Buscador, igual que en estudiantes -->
-        <div class="profile-search-bar">
-          <div class="search-box">
-            <input
-              type="text"
-              class="search-input"
-              placeholder="Buscar por nombre"
-            />
-            <span class="search-icon">🔍</span>
-            <button class="refresh-btn" type="button">⟳</button>
-          </div>
-        </div>
+        <section class="profile-shell">
+          <h2 class="section-title">Información General</h2>
 
-        <!-- Tarjeta principal -->
-        <section class="profile-card">
-
-          <!-- Encabezado con avatar e info básica -->
-          <div class="profile-header">
-            <div class="profile-avatar">
-              <!-- Puedes reemplazar por una imagen real -->
-              <span class="avatar-icon">👩‍🎓</span>
-            </div>
-
-            <div class="profile-header-info">
-              <div class="profile-line">
-                <span class="label">Nombre del alumno:</span>
-                <span class="value strong">Tamara Torres Trujillo</span>
+          <div class="profile-grid">
+            <article class="profile-card wide">
+              <div class="card-title">Estudiante</div>
+              <div class="student-card">
+                <div class="student-avatar">
+                  <img src="buho2.png" alt="Estudiante" />
+                </div>
+                <div class="student-info">
+                  <div class="student-name">Tamara Torres Trujillo</div>
+                  <p><span>Carrera:</span> Medicina</p>
+                  <p><span>Matrícula:</span> 20213547</p>
+                  <p><span>Edad:</span> 20 años</p>
+                  <p><span>Teléfono:</span> 272-123-77-00</p>
+                </div>
               </div>
+            </article>
 
-              <div class="profile-line">
-                <span class="label">Semestre:</span>
-                <span class="value">3°</span>
-
-                <span class="label">Carrera:</span>
-                <span class="value">Medicina</span>
-
-                <span class="label">Tutor:</span>
-                <span class="value strong">Dr. Rodrigo Suárez</span>
+            <article class="profile-card">
+              <div class="card-title">Histórico Académico</div>
+              <div class="academic-row">
+                <span>1er semestre - 8.4</span>
+                <span class="badge success">Aprobado</span>
               </div>
+              <div class="academic-row">
+                <span>2do semestre - 7.9</span>
+                <span class="badge success">Aprobado</span>
+              </div>
+              <div class="academic-row">
+                <span>3er semestre - 6.8</span>
+                <span class="badge alert">En curso</span>
+              </div>
+              <div class="academic-footer">Promedio acumulado: 7.7</div>
+            </article>
 
-              <div class="profile-line">
-                <span class="label">Estado actual:</span>
-                <span class="risk-dot medium"></span>
-                <span class="value">Riesgo medio</span>
+            <article class="profile-card">
+              <div class="card-title">Asistencia</div>
+              <div class="attendance-ring">
+                <div class="ring-inner">80%</div>
               </div>
-            </div>
-          </div>
+            </article>
 
-          <!-- Tarjetas centrales -->
-          <div class="profile-middle">
-            <!-- Info personal -->
-            <div class="info-card">
-              <div class="info-title">Información Personal</div>
-              <div class="info-row">
-                <span class="info-label">Matrícula:</span>
-                <span class="info-value">20213547</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">Edad:</span>
-                <span class="info-value">20 años</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">Teléfono:</span>
-                <span class="info-value">272-123-77-00</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">Correo institucional:</span>
-                <span class="info-value">
-                  Tamara.Torres@uv.mx
-                </span>
-              </div>
-            </div>
+            <article class="profile-card">
+              <div class="card-title">Semestre y tutor</div>
+              <p><span>Semestre:</span> 3°</p>
+              <p><span>Tutor:</span> Dr. Rodrigo Suárez</p>
 
-            <!-- Histórico académico -->
-            <div class="info-card">
-              <div class="info-title">Histórico Académico</div>
-              <table class="small-table">
-                <thead>
-                  <tr>
-                    <th>Semestre</th>
-                    <th>Promedio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1°</td>
-                    <td>9.1</td>
-                  </tr>
-                  <tr>
-                    <td>2°</td>
-                    <td>8.7</td>
-                  </tr>
-                  <tr>
-                    <td>3°</td>
-                    <td>8.4</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              <div class="risk-block">
+                <div class="risk-title">Estado de riesgo actual</div>
+                <div class="risk-ring">
+                  <span>Medio</span>
+                </div>
+              </div>
+            </article>
 
-            <!-- Asistencia -->
-            <div class="info-card">
-              <div class="info-title">Asistencia</div>
-              <table class="small-table">
-                <thead>
-                  <tr>
-                    <th>Periodo</th>
-                    <th>Asistencia</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Semanas recientes</td>
-                    <td>85%</td>
-                  </tr>
-                  <tr>
-                    <td>Promedio general</td>
-                    <td>91%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <article class="profile-card">
+              <div class="card-title">Email de contacto</div>
+              <p><span>Correo institucional:</span></p>
+              <p class="accent">Tamara.Torres@uv.mx</p>
+            </article>
+
+            <article class="profile-card">
+              <div class="card-title">Materias y notas</div>
+              <ul class="subjects">
+                <li><span>Bioquímica 1</span><span>6.5</span></li>
+                <li><span>Anatomía 1</span><span>7.0</span></li>
+                <li><span>Fisiología 1</span><span>8.2</span></li>
+                <li><span>Histología 1</span><span>7.8</span></li>
+              </ul>
+              <div class="academic-footer">Promedio semestral - 7.4</div>
+            </article>
           </div>
 
-          <!-- Historial del riesgo -->
-          <div class="profile-bottom">
-            <div class="info-card risk-history">
-              <div class="info-title">Historial del Riesgo</div>
-              <table class="small-table">
-                <thead>
-                  <tr>
-                    <th>Fecha</th>
-                    <th>Nivel</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Inicio semestre</td>
-                    <td>
-                      <span class="risk-dot low"></span> Bajo
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Semana 5</td>
-                    <td>
-                      <span class="risk-dot medium"></span> Medio
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Recomendación / Programar tutoría -->
-          <div class="tutoring-card">
-            <div class="tutoring-content">
-              <p class="tutoring-text">
-                “Se sugiere programar tutoría académica para reforzar
-                hábitos de estudio. De preferencia dentro de los próximos 7 días.”
+          <article class="profile-card recommendation">
+            <div class="card-title">Recomendaciones</div>
+            <div class="recommendation-content">
+              <div class="recommendation-icon">🎓</div>
+              <p>
+                “Se sugiere programar tutoría presencial para reforzar hábitos
+                de estudio. De preferencia dentro de los próximos 7 días.”
               </p>
-              <button class="btn-tutoring">Programar tutoría</button>
             </div>
-
-            <!-- Aquí puedes poner tu búho/mascota -->
-            <div class="tutoring-image">
-              <img src="buho2.png" alt="Tutor" />
-            </div>
-          </div>
-
+          </article>
         </section>
       </div>
     </main>

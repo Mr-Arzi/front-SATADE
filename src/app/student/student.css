@@ -588,6 +588,16 @@
   gap: 10px;
 }
 
+.clickable-name {
+  cursor: pointer;
+  color: inherit;
+}
+
+.clickable-name:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
 .avatar-icon {
   width: 28px;
   height: 28px;

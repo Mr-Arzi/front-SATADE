@@ -565,6 +565,12 @@
   overflow-y: visible;
 }
 
+.table-loading {
+  padding: 16px 0;
+  font-weight: 600;
+  color: #4a5568;
+}
+
 .alerts-table {
   width: 100%;
   border-collapse: collapse;
@@ -787,6 +793,13 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
+}
+
+.form-error {
+  margin: 0 0 12px;
+  color: #d1433b;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .btn-save,

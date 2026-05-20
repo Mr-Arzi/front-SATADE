@@ -7,12 +7,14 @@
 
     <h1 class="app-name">SATADE</h1>
 
-    <form class="login-form">
+    <form class="login-form" (submit)="$event.preventDefault(); iniciarSesion()">
       <div class="input-group">
         <input
           type="email"
           placeholder="Correo institucional"
           class="input-field"
+          [(ngModel)]="correo"
+          name="correo"
         >
       </div>
 
@@ -21,13 +23,17 @@
           type="password"
           placeholder="Contraseña"
           class="input-field"
+          [(ngModel)]="contrasena"
+          name="contrasena"
         >
         <span class="password-icon">👁</span>
       </div>
 
-      <button type="submit" class="btn-login" routerLink="/home">
+      <button type="submit" class="btn-login" [disabled]="cargando">
         Iniciar Sesión
       </button>
+
+      <p class="login-error" *ngIf="error">{{ error }}</p>
       
 
       <a href="#" class="forgot-password">

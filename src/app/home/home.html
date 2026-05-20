@@ -210,32 +210,18 @@
             <div class="card-title-blue">Alertas recientes</div>
           </div>
 
-          <ul class="alerts-list">
-            <li>
+          <ul class="alerts-list" *ngIf="stats">
+            <li *ngFor="let alerta of stats.alertasRecientes">
               <span class="alert-icon">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 22a2.3 2.3 0 0 0 2.2-2H9.8A2.3 2.3 0 0 0 12 22Z"></path>
                   <path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"></path>
                 </svg>
               </span>
-              <span class="alert-name">Alicia Vargas</span>
+              <span class="alert-name">{{ alerta.nombreEstudiante }}</span>
               <span class="alert-arrow">-&gt;</span>
               <span class="alert-text">
-                Riesgo alto por baja asistencia
-              </span>
-            </li>
-
-            <li>
-              <span class="alert-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 22a2.3 2.3 0 0 0 2.2-2H9.8A2.3 2.3 0 0 0 12 22Z"></path>
-                  <path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2Z"></path>
-                </svg>
-              </span>
-              <span class="alert-name">Pedro Juarez</span>
-              <span class="alert-arrow">-&gt;</span>
-              <span class="alert-text">
-                Riesgo alto por materias reprobadas
+                {{ alerta.motivo }}
               </span>
             </li>
           </ul>
@@ -248,8 +234,8 @@
         <div class="card-column-right">
           <div class="card card-pill">
             <div class="card-pill-title">Tendencias</div>
-            <p class="card-pill-text">
-              Línea temporal: <span class="text-green">deserción disminuyó 8% este semestre</span>
+            <p class="card-pill-text" *ngIf="stats">
+              Línea temporal: <span class="text-green">{{ stats.tendencia }}</span>
             </p>
           </div>
 
@@ -269,7 +255,7 @@
             <div class="card-subtitle">En el último mes</div>
           </div>
 
-          <table>
+          <table *ngIf="stats">
             <thead>
               <tr>
                 <th>Carrera</th>
@@ -277,17 +263,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Ingeniería eléctrica</td>
-                <td class="danger-dot">!</td>
-              </tr>
-              <tr>
-                <td>Ingeniería de software</td>
-                <td class="danger-dot">!</td>
-              </tr>
-              <tr>
-                <td>Ingeniería Química</td>
-                <td class="danger-dot">!</td>
+              <tr *ngFor="let item of stats.carrerasConMayorRiesgo">
+                <td>{{ item.carrera }}</td>
+                <td class="danger-dot">{{ item.nivel }}</td>
               </tr>
             </tbody>
           </table>

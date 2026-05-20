@@ -179,12 +179,14 @@
 
           <div class="student-info">
             <span class="label">Estudiante:</span>
-            <span class="value">Luis Rivera Martínez</span>
+            <span class="value" *ngIf="estudianteId">ID {{ estudianteId }}</span>
+            <span class="value" *ngIf="!estudianteId">Sin seleccionar</span>
           </div>
 
           <!-- Tabla -->
           <div class="registro-table-wrapper">
-            <table class="registro-table">
+            <div class="table-loading" *ngIf="cargando">Cargando...</div>
+            <table class="registro-table" *ngIf="!cargando">
               <thead>
                 <tr>
                   <th>Fecha</th>
@@ -194,35 +196,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>14/03/2026</td>
-                  <td>Sesión de psicología</td>
-                  <td>Ana Perez Ferrer - Psicologa</td>
-                  <td>“Hablamos sobre organización y calendario. Se vio receptiva.”</td>
-                </tr>
-                <tr class="empty-row">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr class="empty-row">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr class="empty-row">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr class="empty-row">
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <tr *ngFor="let item of intervenciones">
+                  <td>{{ item.fecha }}</td>
+                  <td>{{ item.tipo }}</td>
+                  <td>{{ item.responsable }}</td>
+                  <td>{{ item.notas }}</td>
                 </tr>
               </tbody>
             </table>

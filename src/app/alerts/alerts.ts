@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { AlertaService } from '../services/alerta.service';
+import { Alerta } from '../models';
 
 @Component({
   selector: 'app-alerts',
-  imports: [RouterLink, NgIf],
+  imports: [RouterLink, NgClass, NgFor, NgIf, FormsModule],
   templateUrl: './alerts.html',
   styleUrl: './alerts.css',
 })
-export class Alerts {
-  constructor(private router: Router) {}
+export class Alerts implements OnInit {
+  constructor(private router: Router, private alertaService: AlertaService) {}
+
+  alertas: Alerta[] = [];
+  cargando = true;
 
   isMenuOpen = true;
   isUserMenuOpen = false;
@@ -53,20 +60,81 @@ export class Alerts {
   // ====== POPUP INTERVENCIÓN ======
   showIntervention = false;
   selectedStudent: string | null = null;
+  selectedStudentId: number | null = null;
+  tipoIntervencion = '';
+  fechaIntervencion = '';
+  responsableIntervencion = '';
+  guardandoIntervencion = false;
+  errorIntervencion = '';
 
-  abrirIntervencion(nombre: string) {
+  ngOnInit(): void {
+    this.alertaService.getAlertas().subscribe({
+      next: (data) => {
+        this.alertas = data;
+        this.cargando = false;
+      },
+      error: () => {
+        this.cargando = false;
+      },
+    });
+  }
+
+  abrirIntervencion(nombre: string, estudianteId?: number) {
     this.selectedStudent = nombre;
+    this.selectedStudentId = estudianteId ?? null;
+    this.errorIntervencion = '';
     this.showIntervention = true;
   }
 
   cerrarIntervencion() {
     this.showIntervention = false;
     this.selectedStudent = null;
+    this.selectedStudentId = null;
+    this.tipoIntervencion = '';
+    this.fechaIntervencion = '';
+    this.responsableIntervencion = '';
+    this.guardandoIntervencion = false;
+    this.errorIntervencion = '';
+  }
+
+  guardarIntervencion() {
+    if (this.guardandoIntervencion) {
+      return;
+    }
+
+    if (!this.selectedStudentId || !this.tipoIntervencion || !this.fechaIntervencion || !this.responsableIntervencion) {
+      this.errorIntervencion = 'Completa todos los campos para guardar la intervencion.';
+      return;
+    }
+
+    this.guardandoIntervencion = true;
+    this.errorIntervencion = '';
+
+    this.alertaService
+      .registrarIntervencion({
+        estudianteId: this.selectedStudentId,
+        tipo: this.tipoIntervencion,
+        fecha: this.fechaIntervencion,
+        responsable: this.responsableIntervencion,
+        notas: '',
+      })
+      .subscribe({
+        next: () => {
+          this.guardandoIntervencion = false;
+          this.cerrarIntervencion();
+        },
+        error: () => {
+          this.guardandoIntervencion = false;
+          this.errorIntervencion = 'No se pudo guardar la intervencion.';
+        },
+      });
   }
 
   goToHistory(studentName: string) {
     if (studentName === 'Luis Rivera Martínez') {
-      this.router.navigate(['/registro-intervenciones']);
+      this.router.navigate(['/registro-intervenciones'], {
+        queryParams: { estudianteId: 1 },
+      });
     }
   }
 

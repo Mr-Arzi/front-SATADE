@@ -238,7 +238,8 @@
           </div>
 
           <div class="students-table-wrapper">
-            <table class="students-table">
+            <div class="table-loading" *ngIf="cargando">Cargando...</div>
+            <table class="students-table" *ngIf="!cargando">
               <thead>
                 <tr>
                   <th class="col-name">Nombre</th>
@@ -250,7 +251,7 @@
               </thead>
 
               <tbody>
-                <tr>
+                <tr *ngFor="let estudiante of estudiantes; let i = index">
                   <td class="name-cell">
                     <span class="avatar-icon">
                       <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -258,21 +259,31 @@
                         <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
                       </svg>
                     </span>
-                    Luis Rivera Martínez
+                    <span
+                      class="clickable-name"
+                      (click)="goToProfile(estudiante.nombre)"
+                    >
+                      {{ estudiante.nombre }}
+                    </span>
                   </td>
-                  <td>8.9</td>
-                  <td>92%</td>
-                  <td><span class="risk-dot low"></span></td>
+                  <td>{{ estudiante.promedio }}</td>
+                  <td>{{ estudiante.asistencia }}%</td>
+                  <td>
+                    <span
+                      class="risk-dot"
+                      [ngClass]="estudiante.nivelRiesgo"
+                    ></span>
+                  </td>
                   <td class="actions-cell">
                     <button
                       class="action-trigger"
                       type="button"
-                      (click)="toggleActionMenu(1); $event.stopPropagation()"
+                      (click)="toggleActionMenu(i); $event.stopPropagation()"
                       aria-label="Acciones"
                     >
                       <span></span><span></span><span></span>
                     </button>
-                    <div class="action-menu" *ngIf="openActionMenu === 1" (click)="$event.stopPropagation()">
+                    <div class="action-menu" *ngIf="openActionMenu === i" (click)="$event.stopPropagation()">
                       <button class="action-item" type="button">
                         <span class="action-icon">
                           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -296,189 +307,6 @@
                   </td>
                 </tr>
 
-                <tr class="row-selected">
-                  <td class="name-cell">
-                    <span class="avatar-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="4"></circle>
-                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
-                      </svg>
-                    </span>
-                    Tamara Torres Trujillo
-                  </td>
-                  <td>7.2</td>
-                  <td>68%</td>
-                  <td><span class="risk-dot medium"></span></td>
-                  <td class="actions-cell">
-                    <button
-                      class="action-trigger"
-                      type="button"
-                      (click)="toggleActionMenu(2); $event.stopPropagation()"
-                      aria-label="Acciones"
-                    >
-                      <span></span><span></span><span></span>
-                    </button>
-                    <div class="action-menu" *ngIf="openActionMenu === 2" (click)="$event.stopPropagation()">
-                      <button class="action-item" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4 20h4l10-10-4-4L4 16v4Z"></path>
-                            <path d="M14 6l4 4"></path>
-                          </svg>
-                        </span>
-                        Editar
-                      </button>
-                      <button class="action-item danger" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M3 6h18"></path>
-                            <path d="M8 6V4h8v2"></path>
-                            <path d="M6 6l1 14h10l1-14"></path>
-                          </svg>
-                        </span>
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="name-cell">
-                    <span class="avatar-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="4"></circle>
-                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
-                      </svg>
-                    </span>
-                    Juan Pérez Domínguez
-                  </td>
-                  <td>6</td>
-                  <td>45%</td>
-                  <td><span class="risk-dot high"></span></td>
-                  <td class="actions-cell">
-                    <button
-                      class="action-trigger"
-                      type="button"
-                      (click)="toggleActionMenu(3); $event.stopPropagation()"
-                      aria-label="Acciones"
-                    >
-                      <span></span><span></span><span></span>
-                    </button>
-                    <div class="action-menu" *ngIf="openActionMenu === 3" (click)="$event.stopPropagation()">
-                      <button class="action-item" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4 20h4l10-10-4-4L4 16v4Z"></path>
-                            <path d="M14 6l4 4"></path>
-                          </svg>
-                        </span>
-                        Editar
-                      </button>
-                      <button class="action-item danger" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M3 6h18"></path>
-                            <path d="M8 6V4h8v2"></path>
-                            <path d="M6 6l1 14h10l1-14"></path>
-                          </svg>
-                        </span>
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="name-cell">
-                    <span class="avatar-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="4"></circle>
-                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
-                      </svg>
-                    </span>
-                    Valeria Ramírez Salinas
-                  </td>
-                  <td>9.5</td>
-                  <td>100%</td>
-                  <td><span class="risk-dot low"></span></td>
-                  <td class="actions-cell">
-                    <button
-                      class="action-trigger"
-                      type="button"
-                      (click)="toggleActionMenu(4); $event.stopPropagation()"
-                      aria-label="Acciones"
-                    >
-                      <span></span><span></span><span></span>
-                    </button>
-                    <div class="action-menu" *ngIf="openActionMenu === 4" (click)="$event.stopPropagation()">
-                      <button class="action-item" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4 20h4l10-10-4-4L4 16v4Z"></path>
-                            <path d="M14 6l4 4"></path>
-                          </svg>
-                        </span>
-                        Editar
-                      </button>
-                      <button class="action-item danger" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M3 6h18"></path>
-                            <path d="M8 6V4h8v2"></path>
-                            <path d="M6 6l1 14h10l1-14"></path>
-                          </svg>
-                        </span>
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="name-cell">
-                    <span class="avatar-icon">
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="4"></circle>
-                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
-                      </svg>
-                    </span>
-                    Marco Jiménez Cabrera
-                  </td>
-                  <td>8</td>
-                  <td>90%</td>
-                  <td><span class="risk-dot low"></span></td>
-                  <td class="actions-cell">
-                    <button
-                      class="action-trigger"
-                      type="button"
-                      (click)="toggleActionMenu(5); $event.stopPropagation()"
-                      aria-label="Acciones"
-                    >
-                      <span></span><span></span><span></span>
-                    </button>
-                    <div class="action-menu" *ngIf="openActionMenu === 5" (click)="$event.stopPropagation()">
-                      <button class="action-item" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4 20h4l10-10-4-4L4 16v4Z"></path>
-                            <path d="M14 6l4 4"></path>
-                          </svg>
-                        </span>
-                        Editar
-                      </button>
-                      <button class="action-item danger" type="button">
-                        <span class="action-icon">
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M3 6h18"></path>
-                            <path d="M8 6V4h8v2"></path>
-                            <path d="M6 6l1 14h10l1-14"></path>
-                          </svg>
-                        </span>
-                        Eliminar
-                      </button>
-                    </div>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>
