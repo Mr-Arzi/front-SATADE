@@ -96,7 +96,7 @@
             <div class="user-dropdown-name">Jesús Galván</div>
             <div class="user-dropdown-role">Administrador</div>
           </div>
-          <button class="user-dropdown-item" (click)="closeUserMenu()">
+          <button class="user-dropdown-item" (click)="cerrarSesion()">
             Cerrar sesión
           </button>
         </div>
@@ -173,134 +173,169 @@
     <!-- Panel principal -->
     <main class="dashboard" (click)="closeUserMenu(); closeNotifications()">
       <div class="student-register-page">
-        <h1 class="page-title">Registro de Estudiante</h1>
+        <h1 class="page-title">{{ modoEdicion ? 'Editar Estudiante' : 'Registro de Estudiante' }}</h1>
 
-        <section class="register-card">
-          <div class="register-grid">
-            <div class="photo-panel">
-              <div class="section-header">
-                <h2 class="section-title">Foto del Alumno</h2>
+        <p class="loading-text" *ngIf="cargandoEstudiante">Cargando datos del estudiante...</p>
+
+        <section class="register-card" *ngIf="!cargandoEstudiante">
+          <form [formGroup]="registroForm" (ngSubmit)="guardar()">
+            <div class="register-grid">
+              <div class="photo-panel">
+                <div class="section-header">
+                  <h2 class="section-title">Foto del Alumno</h2>
+                </div>
+                <div class="photo-box">
+                  <div class="photo-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="11" cy="10" r="4"></circle>
+                      <path d="M4 20c0-4 3-6 7-6"></path>
+                      <path d="M18 8v4"></path>
+                      <path d="M16 10h4"></path>
+                    </svg>
+                  </div>
+                </div>
+                <span class="photo-caption">Subir Foto</span>
               </div>
-              <div class="photo-box">
-                <div class="photo-icon">
+
+              <div class="form-panel">
+                <div class="section-header">
+                  <h2 class="section-title">Datos Personales</h2>
+                </div>
+                <div class="field-group">
+                  <label class="field-label">Nombre Completo</label>
+                  <div class="field-control has-caret">
+                    <input
+                      class="field-input"
+                      type="text"
+                      placeholder="Nombre Completo"
+                      formControlName="nombre"
+                    />
+                    <span class="input-caret">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="field-error" *ngIf="campoInvalido('nombre')">
+                    El nombre es obligatorio (mínimo 3 caracteres).
+                  </span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label">Matricula</label>
+                  <div class="field-control has-caret">
+                    <input
+                      class="field-input"
+                      type="text"
+                      placeholder="Matricula"
+                      formControlName="matricula"
+                    />
+                    <span class="input-caret">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="field-error" *ngIf="campoInvalido('matricula')">
+                    La matrícula es obligatoria.
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-panel">
+                <div class="section-header">
+                  <h2 class="section-title">Datos Academicos</h2>
+                </div>
+                <div class="field-group">
+                  <label class="field-label">Carrera</label>
+                  <div class="field-control has-caret">
+                    <select class="field-input" formControlName="carrera">
+                      <option value="">Carrera</option>
+                      <option>Ingeniería eléctrica</option>
+                      <option>Ingeniería de software</option>
+                      <option>Ingeniería Química</option>
+                    </select>
+                    <span class="input-caret">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="field-error" *ngIf="campoInvalido('carrera')">
+                    Selecciona una carrera.
+                  </span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label">Grupo</label>
+                  <div class="field-control has-caret">
+                    <select class="field-input" formControlName="grupo">
+                      <option value="">Grupo</option>
+                      <option>101</option>
+                      <option>102</option>
+                      <option>201</option>
+                    </select>
+                    <span class="input-caret">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="field-error" *ngIf="campoInvalido('grupo')">
+                    Selecciona un grupo.
+                  </span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label">Tutor</label>
+                  <div class="field-control has-caret">
+                    <select class="field-input" formControlName="tutor">
+                      <option value="">Tutor</option>
+                      <option>Rosa Martinez</option>
+                      <option>Victor Salinas</option>
+                      <option>Andrea Cruz</option>
+                    </select>
+                    <span class="input-caret">
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </span>
+                  </div>
+                  <span class="field-error" *ngIf="campoInvalido('tutor')">
+                    Selecciona un tutor.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p class="form-error" *ngIf="errorGuardado">{{ errorGuardado }}</p>
+            <p class="form-success" *ngIf="exitoGuardado">
+              {{ modoEdicion ? 'Estudiante actualizado correctamente.' : 'Estudiante registrado correctamente.' }}
+              Regresando al listado...
+            </p>
+
+            <div class="form-actions">
+              <button class="action-btn save-btn" type="submit" [disabled]="guardando">
+                <span class="action-icon">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="11" cy="10" r="4"></circle>
-                    <path d="M4 20c0-4 3-6 7-6"></path>
-                    <path d="M18 8v4"></path>
-                    <path d="M16 10h4"></path>
+                    <path d="M5 20h14a1 1 0 0 0 1-1V8l-4-4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1Z"></path>
+                    <path d="M12 12v6"></path>
+                    <path d="m9 15 3 3 3-3"></path>
                   </svg>
-                </div>
-              </div>
-              <span class="photo-caption">Subir Foto</span>
+                </span>
+                {{ guardando ? (modoEdicion ? 'Actualizando...' : 'Guardando...') : (modoEdicion ? 'Actualizar' : 'Guardar') }}
+              </button>
+              <button class="action-btn cancel-btn" type="button" (click)="cancelar()" [disabled]="guardando">
+                <span class="action-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M6 6l12 12"></path>
+                    <path d="M18 6 6 18"></path>
+                  </svg>
+                </span>
+                Cancelar
+              </button>
             </div>
-
-            <div class="form-panel">
-              <div class="section-header">
-                <h2 class="section-title">Datos Personales</h2>
-              </div>
-              <div class="field-group">
-                <label class="field-label">Nombre Completo</label>
-                <div class="field-control has-caret">
-                  <input class="field-input" type="text" placeholder="Nombre Completo" />
-                  <span class="input-caret">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="field-group">
-                <label class="field-label">Matricula</label>
-                <div class="field-control has-caret">
-                  <input class="field-input" type="text" placeholder="Matricula" />
-                  <span class="input-caret">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-panel">
-              <div class="section-header">
-                <h2 class="section-title">Datos Academicos</h2>
-              </div>
-              <div class="field-group">
-                <label class="field-label">Carrera</label>
-                <div class="field-control has-caret">
-                  <select class="field-input">
-                    <option value="">Carrera</option>
-                    <option>Ingeniería eléctrica</option>
-                    <option>Ingeniería de software</option>
-                    <option>Ingeniería Química</option>
-                  </select>
-                  <span class="input-caret">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="field-group">
-                <label class="field-label">Grupo</label>
-                <div class="field-control has-caret">
-                  <select class="field-input">
-                    <option value="">Grupo</option>
-                    <option>101</option>
-                    <option>102</option>
-                    <option>201</option>
-                  </select>
-                  <span class="input-caret">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-              <div class="field-group">
-                <label class="field-label">Tutor</label>
-                <div class="field-control has-caret">
-                  <select class="field-input">
-                    <option value="">Tutor</option>
-                    <option>Rosa Martinez</option>
-                    <option>Victor Salinas</option>
-                    <option>Andrea Cruz</option>
-                  </select>
-                  <span class="input-caret">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m6 9 6 6 6-6"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-actions">
-            <button class="action-btn save-btn" type="button">
-              <span class="action-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 20h14a1 1 0 0 0 1-1V8l-4-4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1Z"></path>
-                  <path d="M12 12v6"></path>
-                  <path d="m9 15 3 3 3-3"></path>
-                </svg>
-              </span>
-              Guardar
-            </button>
-            <button class="action-btn cancel-btn" type="button">
-              <span class="action-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6 6l12 12"></path>
-                  <path d="M18 6 6 18"></path>
-                </svg>
-              </span>
-              Cancelar
-            </button>
-          </div>
+          </form>
         </section>
       </div>
     </main>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { NgIf } from '@angular/common';
 
+import { AuthService } from '../services/auth.service';
+
 @Component({
   selector: 'app-reportes',
   imports: [RouterLink, NgIf],
@@ -14,6 +16,8 @@ export class Reportes {
   isNotificationsOpen = false;
 
   showAbout = false;
+
+  constructor(private readonly authService: AuthService) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -28,6 +32,11 @@ export class Reportes {
 
   closeUserMenu() {
     this.isUserMenuOpen = false;
+  }
+
+  cerrarSesion() {
+    this.closeUserMenu();
+    this.authService.logout();
   }
 
   toggleNotifications() {

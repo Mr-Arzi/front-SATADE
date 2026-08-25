@@ -96,7 +96,7 @@
             <div class="user-dropdown-name">Jesús Galván</div>
             <div class="user-dropdown-role">Administrador</div>
           </div>
-          <button class="user-dropdown-item" (click)="closeUserMenu()">
+          <button class="user-dropdown-item" (click)="cerrarSesion()">
             Cerrar sesión
           </button>
         </div>
@@ -188,7 +188,10 @@
 
         <h1 class="page-title">Perfil de Estudiante</h1>
 
-        <section class="profile-shell">
+        <p class="table-loading" *ngIf="cargando">Cargando...</p>
+        <p class="table-loading" *ngIf="!cargando && !estudiante">No se encontró el estudiante solicitado.</p>
+
+        <section class="profile-shell" *ngIf="!cargando && estudiante">
           <h2 class="section-title">Información General</h2>
 
           <div class="profile-grid">
@@ -196,12 +199,12 @@
               <div class="card-title">Estudiante</div>
               <div class="student-card">
                 <div class="student-avatar">
-                  <img src="buho2.png" alt="Estudiante" />
+                  <img [src]="estudiante.fotoUrl || 'buho2.png'" alt="Estudiante" />
                 </div>
                 <div class="student-info">
-                  <div class="student-name">Tamara Torres Trujillo</div>
-                  <p><span>Carrera:</span> Medicina</p>
-                  <p><span>Matrícula:</span> 20213547</p>
+                  <div class="student-name">{{ estudiante.nombre }}</div>
+                  <p><span>Carrera:</span> {{ estudiante.carrera }}</p>
+                  <p><span>Matrícula:</span> {{ estudiante.matricula }}</p>
                   <p><span>Edad:</span> 20 años</p>
                   <p><span>Teléfono:</span> 272-123-77-00</p>
                 </div>
@@ -228,19 +231,19 @@
             <article class="profile-card">
               <div class="card-title">Asistencia</div>
               <div class="attendance-ring">
-                <div class="ring-inner">80%</div>
+                <div class="ring-inner">{{ estudiante.asistencia }}%</div>
               </div>
             </article>
 
             <article class="profile-card">
               <div class="card-title">Semestre y tutor</div>
               <p><span>Semestre:</span> 3°</p>
-              <p><span>Tutor:</span> Dr. Rodrigo Suárez</p>
+              <p><span>Tutor:</span> {{ estudiante.tutor }}</p>
 
               <div class="risk-block">
                 <div class="risk-title">Estado de riesgo actual</div>
                 <div class="risk-ring">
-                  <span>Medio</span>
+                  <span>{{ estudiante.nivelRiesgo | titlecase }}</span>
                 </div>
               </div>
             </article>

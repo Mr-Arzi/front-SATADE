@@ -96,7 +96,7 @@
             <div class="user-dropdown-name">Jesús Galván</div>
             <div class="user-dropdown-role">Administrador</div>
           </div>
-          <button class="user-dropdown-item" (click)="closeUserMenu()">
+          <button class="user-dropdown-item" (click)="cerrarSesion()">
             Cerrar sesión
           </button>
         </div>
@@ -198,6 +198,8 @@
           </button>
         </div>
 
+        <p class="delete-error" *ngIf="errorEliminar">{{ errorEliminar }}</p>
+
         <section class="students-card">
           <div class="filters-row">
             <div class="filters-left">
@@ -274,7 +276,7 @@
                     <button
                       class="clickable-name"
                       type="button"
-                      (click)="goToProfile(estudiante.nombre)"
+                      (click)="goToProfile(estudiante.id)"
                     >
                       {{ estudiante.nombre }}
                     </button>
@@ -303,7 +305,11 @@
                       (keydown.enter)="$event.stopPropagation()"
                       (keydown.space)="$event.stopPropagation()"
                     >
-                      <button class="action-item" type="button">
+                      <button
+                        class="action-item"
+                        type="button"
+                        (click)="editarEstudiante(estudiante.id)"
+                      >
                         <span class="action-icon">
                           <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M4 20h4l10-10-4-4L4 16v4Z"></path>
@@ -312,7 +318,12 @@
                         </span>
                         Editar
                       </button>
-                      <button class="action-item danger" type="button">
+                      <button
+                        class="action-item danger"
+                        type="button"
+                        [disabled]="eliminandoId === estudiante.id"
+                        (click)="eliminarEstudiante(estudiante.id)"
+                      >
                         <span class="action-icon">
                           <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M3 6h18"></path>
@@ -320,7 +331,7 @@
                             <path d="M6 6l1 14h10l1-14"></path>
                           </svg>
                         </span>
-                        Eliminar
+                        {{ eliminandoId === estudiante.id ? 'Eliminando...' : 'Eliminar' }}
                       </button>
                     </div>
                   </td>

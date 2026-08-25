@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+
+import { EstudianteService } from '../services/estudiante.service';
+import { AuthService } from '../services/auth.service';
+import { Estudiante } from '../models';
 
 @Component({
   selector: 'app-student-profile',
@@ -8,12 +12,39 @@ import { RouterLink } from "@angular/router";
   templateUrl: './student-profile.html',
   styleUrl: './student-profile.css',
 })
-export class StudentProfile {
+export class StudentProfile implements OnInit {
+  estudiante: Estudiante | null = null;
+  cargando = true;
+
   isMenuOpen = true;
   isUserMenuOpen = false;
   isNotificationsOpen = false;
 
   showAbout = false;
+
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly estudianteService: EstudianteService,
+    private readonly authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (!id) {
+      this.cargando = false;
+      return;
+    }
+
+    this.estudianteService.getEstudiantePorId(id).subscribe({
+      next: (data) => {
+        this.estudiante = data;
+        this.cargando = false;
+      },
+      error: () => {
+        this.cargando = false;
+      },
+    });
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -28,6 +59,11 @@ export class StudentProfile {
 
   closeUserMenu() {
     this.isUserMenuOpen = false;
+  }
+
+  cerrarSesion() {
+    this.closeUserMenu();
+    this.authService.logout();
   }
 
   toggleNotifications() {

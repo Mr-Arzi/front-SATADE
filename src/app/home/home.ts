@@ -3,6 +3,7 @@ import { RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 
 import { AlertaService } from '../services/alerta.service';
+import { AuthService } from '../services/auth.service';
 import { DashboardStats } from '../models';
 
 @Component({
@@ -20,7 +21,10 @@ export class Home implements OnInit {
 
   showAbout = false;
 
-  constructor(private readonly alertaService: AlertaService) {}
+  constructor(
+    private readonly alertaService: AlertaService,
+    private readonly authService: AuthService
+  ) {}
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -35,6 +39,11 @@ export class Home implements OnInit {
 
   closeUserMenu() {
     this.isUserMenuOpen = false;
+  }
+
+  cerrarSesion() {
+    this.closeUserMenu();
+    this.authService.logout();
   }
 
   toggleNotifications() {

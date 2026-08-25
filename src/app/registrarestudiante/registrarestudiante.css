@@ -523,11 +523,45 @@
   stroke-width: 2;
 }
 
+.loading-text {
+  text-align: center;
+  color: #5d6b7b;
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+.field-error {
+  color: #d1433b;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.form-error {
+  margin: 20px 0 0;
+  color: #d1433b;
+  font-weight: 600;
+  font-size: 13px;
+  text-align: center;
+}
+
+.form-success {
+  margin: 20px 0 0;
+  color: #1d7a47;
+  font-weight: 600;
+  font-size: 13px;
+  text-align: center;
+}
+
 .form-actions {
   margin-top: 28px;
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .action-btn {

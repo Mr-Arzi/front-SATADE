@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { AlertaService } from '../services/alerta.service';
+import { AuthService } from '../services/auth.service';
 import { Alerta } from '../models';
 
 @Component({
@@ -15,7 +16,8 @@ import { Alerta } from '../models';
 export class Alerts implements OnInit {
   constructor(
     private readonly router: Router,
-    private readonly alertaService: AlertaService
+    private readonly alertaService: AlertaService,
+    private readonly authService: AuthService
   ) {}
 
   alertas: Alerta[] = [];
@@ -39,6 +41,11 @@ export class Alerts implements OnInit {
 
   closeUserMenu() {
     this.isUserMenuOpen = false;
+  }
+
+  cerrarSesion() {
+    this.closeUserMenu();
+    this.authService.logout();
   }
 
   toggleNotifications() {

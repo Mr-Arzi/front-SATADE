@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 
 import { AlertaService } from '../services/alerta.service';
+import { AuthService } from '../services/auth.service';
 import { Intervencion } from '../models';
 
 @Component({
@@ -23,7 +24,8 @@ export class RegistroIntervenciones implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly alertaService: AlertaService
+    private readonly alertaService: AlertaService,
+    private readonly authService: AuthService
   ) {}
 
   toggleMenu() {
@@ -39,6 +41,11 @@ export class RegistroIntervenciones implements OnInit {
 
   closeUserMenu() {
     this.isUserMenuOpen = false;
+  }
+
+  cerrarSesion() {
+    this.closeUserMenu();
+    this.authService.logout();
   }
 
   toggleNotifications() {

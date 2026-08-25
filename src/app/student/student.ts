@@ -3,6 +3,7 @@ import { Router, RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 
 import { EstudianteService } from '../services/estudiante.service';
+import { AuthService } from '../services/auth.service';
 import { Estudiante } from '../models';
 
 @Component({
@@ -14,10 +15,13 @@ import { Estudiante } from '../models';
 export class Student implements OnInit {
   estudiantes: Estudiante[] = [];
   cargando = true;
+  eliminandoId: number | null = null;
+  errorEliminar = '';
 
   constructor(
     private readonly router: Router,
-    private readonly estudianteService: EstudianteService
+    private readonly estudianteService: EstudianteService,
+    private readonly authService: AuthService
   ) {}
 
   isMenuOpen = true;
@@ -40,6 +44,11 @@ export class Student implements OnInit {
 
   closeUserMenu() {
     this.isUserMenuOpen = false;
+  }
+
+  cerrarSesion() {
+    this.closeUserMenu();
+    this.authService.logout();
   }
 
   toggleNotifications() {
@@ -81,9 +90,35 @@ export class Student implements OnInit {
     });
   }
 
-  goToProfile(studentName: string) {
-    if (studentName === 'Tamara Torres Trujillo') {
-      this.router.navigate(['/perfil-estudiante']);
+  goToProfile(studentId: number) {
+    this.router.navigate(['/perfil-estudiante', studentId]);
+  }
+
+  editarEstudiante(id: number) {
+    this.closeActionMenu();
+    this.router.navigate(['/registrar', id]);
+  }
+
+  eliminarEstudiante(id: number) {
+    this.closeActionMenu();
+
+    const confirmado = confirm('¿Deseas eliminar este estudiante? Esta acción no se puede deshacer.');
+    if (!confirmado) {
+      return;
     }
+
+    this.eliminandoId = id;
+    this.errorEliminar = '';
+
+    this.estudianteService.eliminarEstudiante(id).subscribe({
+      next: () => {
+        this.eliminandoId = null;
+        this.estudiantes = this.estudiantes.filter((estudiante) => estudiante.id !== id);
+      },
+      error: () => {
+        this.eliminandoId = null;
+        this.errorEliminar = 'No se pudo eliminar el estudiante. Intenta nuevamente.';
+      },
+    });
   }
 }
