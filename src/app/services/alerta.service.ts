@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Alerta, DashboardStats, Intervencion } from '../models';
-import { AuthService } from './auth.service';
 
 const API_BASE = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class AlertaService {
-  constructor(
-    private readonly http: HttpClient,
-    private readonly auth: AuthService
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   getAlertas(filtros?: { carrera?: string; grupo?: string; nivel?: string }): Observable<Alerta[]> {
     let params = new HttpParams();
@@ -28,18 +24,13 @@ export class AlertaService {
     }
 
     return this.http
-      .get<Alerta[]>(`${API_BASE}/api/alertas`, {
-        headers: this.buildHeaders(),
-        params,
-      })
+      .get<Alerta[]>(`${API_BASE}/api/alertas`, { params })
       .pipe(catchError(() => of(this.getMockAlertas())));
   }
 
   registrarIntervencion(data: Omit<Intervencion, 'id'>): Observable<Intervencion> {
     return this.http
-      .post<Intervencion>(`${API_BASE}/api/intervenciones`, data, {
-        headers: this.buildHeaders(),
-      })
+      .post<Intervencion>(`${API_BASE}/api/intervenciones`, data)
       .pipe(
         catchError(() =>
           of({
@@ -53,7 +44,6 @@ export class AlertaService {
   getIntervencionesPorEstudiante(estudianteId: number): Observable<Intervencion[]> {
     return this.http
       .get<Intervencion[]>(`${API_BASE}/api/intervenciones`, {
-        headers: this.buildHeaders(),
         params: new HttpParams().set('estudianteId', String(estudianteId)),
       })
       .pipe(
@@ -69,17 +59,8 @@ export class AlertaService {
 
   getDashboardStats(): Observable<DashboardStats> {
     return this.http
-      .get<DashboardStats>(`${API_BASE}/api/dashboard`, {
-        headers: this.buildHeaders(),
-      })
+      .get<DashboardStats>(`${API_BASE}/api/dashboard`)
       .pipe(catchError(() => of(this.getMockDashboard())));
-  }
-
-  private buildHeaders(): HttpHeaders {
-    const token = this.auth.getToken();
-    return new HttpHeaders({
-      Authorization: token ? `Bearer ${token}` : '',
-    });
   }
 
   private getMockAlertas(): Alerta[] {

@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AuthService } from './auth.service';
 import { Estudiante } from '../models';
 
 const API_BASE = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class EstudianteService {
-  constructor(
-    private readonly http: HttpClient,
-    private readonly auth: AuthService
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   // Estado en memoria usado únicamente como fallback mientras no exista backend.
   // Vive mientras dure la sesión del navegador (se pierde al recargar), lo que
@@ -59,17 +55,13 @@ export class EstudianteService {
 
   getEstudiantes(): Observable<Estudiante[]> {
     return this.http
-      .get<Estudiante[]>(`${API_BASE}/api/estudiantes`, {
-        headers: this.buildHeaders(),
-      })
+      .get<Estudiante[]>(`${API_BASE}/api/estudiantes`)
       .pipe(catchError(() => of([...this.mockEstudiantes])));
   }
 
   getEstudiantePorId(id: number): Observable<Estudiante> {
     return this.http
-      .get<Estudiante>(`${API_BASE}/api/estudiantes/${id}`, {
-        headers: this.buildHeaders(),
-      })
+      .get<Estudiante>(`${API_BASE}/api/estudiantes/${id}`)
       .pipe(
         catchError(() => {
           const mock = this.mockEstudiantes.find((estudiante) => estudiante.id === id);
@@ -80,9 +72,7 @@ export class EstudianteService {
 
   crearEstudiante(data: Partial<Estudiante>): Observable<Estudiante> {
     return this.http
-      .post<Estudiante>(`${API_BASE}/api/estudiantes`, data, {
-        headers: this.buildHeaders(),
-      })
+      .post<Estudiante>(`${API_BASE}/api/estudiantes`, data)
       .pipe(
         catchError(() => {
           const nuevoId = this.mockEstudiantes.length
@@ -114,9 +104,7 @@ export class EstudianteService {
   // promedio, asistencia, nivelRiesgo o fotoUrl que este formulario no gestiona.
   actualizarEstudiante(id: number, data: Partial<Estudiante>): Observable<Estudiante> {
     return this.http
-      .patch<Estudiante>(`${API_BASE}/api/estudiantes/${id}`, data, {
-        headers: this.buildHeaders(),
-      })
+      .patch<Estudiante>(`${API_BASE}/api/estudiantes/${id}`, data)
       .pipe(
         catchError(() => {
           const index = this.mockEstudiantes.findIndex((estudiante) => estudiante.id === id);
@@ -133,9 +121,7 @@ export class EstudianteService {
 
   eliminarEstudiante(id: number): Observable<void> {
     return this.http
-      .delete<void>(`${API_BASE}/api/estudiantes/${id}`, {
-        headers: this.buildHeaders(),
-      })
+      .delete<void>(`${API_BASE}/api/estudiantes/${id}`)
       .pipe(
         catchError(() => {
           const index = this.mockEstudiantes.findIndex((estudiante) => estudiante.id === id);
@@ -147,12 +133,5 @@ export class EstudianteService {
           return of(undefined);
         })
       );
-  }
-
-  private buildHeaders(): HttpHeaders {
-    const token = this.auth.getToken();
-    return new HttpHeaders({
-      Authorization: token ? `Bearer ${token}` : '',
-    });
   }
 }
